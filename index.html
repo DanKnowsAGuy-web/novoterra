@@ -79,12 +79,12 @@ img{max-width:100%;height:auto;display:block}
 /* ---------- title block ---------- */
 .titleblock{
   display:grid;
-  grid-template-columns:minmax(180px,1fr) 1.5fr 1.2fr .8fr .6fr 1.1fr;
+  grid-template-columns:minmax(180px,auto) 1fr;
   border:1.5px solid var(--navy);
   border-left:0;border-right:0;
   margin:0;
 }
-.tb-corr a{font-weight:600;color:var(--navy);font-size:.78rem;letter-spacing:.03em}
+.titleblock>div:last-child{align-items:flex-end}
 .titleblock>div{
   padding:.6rem 1.1rem;
   border-right:1px solid var(--rule-strong);
@@ -92,8 +92,6 @@ img{max-width:100%;height:auto;display:block}
 }
 .titleblock>div:last-child{border-right:0}
 .tb-title{font-size:.98rem;font-weight:600;letter-spacing:.06em;line-height:1.25;white-space:nowrap}
-.tb-meta{font-size:.78rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
-.tb-meta b{font-weight:600}
 
 /* logo: the Continuous Line mark */
 .mark{display:block;min-width:9.5rem}
@@ -129,7 +127,6 @@ h1{
   font-size:clamp(1.9rem,4.35vw,4rem);line-height:1.12;
   letter-spacing:.01em;white-space:nowrap;
 }
-.keyfigure .basis{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
 
 /* fig 1 */
 .fig1-wrap{margin-top:clamp(.5rem,1.2vw,1rem)}
@@ -395,9 +392,6 @@ html.js .docbody.spine-done::after{opacity:1}
   font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
   font-weight:600;font-size:clamp(1.05rem,1.8vw,1.4rem);letter-spacing:.06em;
 }
-.basis a{color:var(--muted)}
-.basis a:hover{color:var(--navy)}
-
 /* procedure */
 .procedure{margin:.3rem 0 1.6rem;max-width:34rem}
 .procedure ol{list-style:none;counter-reset:step;border-top:1.5px solid var(--navy)}
@@ -568,10 +562,11 @@ html.js .docbody.spine-done::after{opacity:1}
 
 /* ---------- responsive ---------- */
 @media (max-width:1000px){
-  .titleblock{grid-template-columns:1fr 1fr}
-  .tb-title,.tb-meta{white-space:normal}
-  .titleblock>div{border-bottom:1px solid var(--rule)}
-  .docbody::before,.docbody::after{display:none}
+  .titleblock{grid-template-columns:1fr}
+  .tb-title{white-space:normal;font-size:.9rem}
+  .titleblock>div{border-right:0;border-bottom:1px solid var(--rule)}
+  .titleblock>div:last-child{border-bottom:0;align-items:flex-start}
+  .docbody::before,.docbody::after,.spinefill{display:none}
   .docbody,.docbody section + section{margin-top:40px}
   .corr-grid{grid-template-columns:1fr}
   .seal{justify-self:start;margin:0 auto}
@@ -582,7 +577,6 @@ html.js .docbody.spine-done::after{opacity:1}
   .cred-tiles>div:nth-child(2){border-right:0}
   .cred-tiles>div{border-bottom:1px solid var(--rule)}
   .record li{grid-template-columns:1fr;gap:.15rem}
-  .titleblock>div:nth-child(2n){border-right:0}
   .keyfigure{align-items:flex-start}
   .twocol{grid-template-columns:1fr}
   .machine{grid-template-columns:1fr}
@@ -622,10 +616,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <small class="mark-energy">Energy</small>
     </div>
     <div class="tb-title display">Technical Prospectus No. 001</div>
-    <div class="tb-title display">NovoTerra Energy Center</div>
-    <div class="tb-meta"><b>Filed:</b> August 2026</div>
-    <div class="tb-meta"><b>Sheet</b> 1 of 8</div>
-    <div class="tb-meta tb-corr"><span class="label">Correspondence</span><a href="mailto:dan@yourenergyplus.com?subject=Technical%20Prospectus%20No.%20001">dan@yourenergyplus.com</a></div>
   </div>
 
   <div class="filed-stamp" aria-hidden="true">Filed · August 2026</div>
@@ -633,8 +623,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <h1>Waste is the 24/7 fuel source. The grid is already there.</h1>
     <div class="keyfigure">
       <div class="bar"><span class="num"><span class="odo">31.5</span>&nbsp;GWh PER YEAR</span></div>
-      <span class="basis">Basis: ITEA reference plant, Singapore, operating since 2012</span>
-      <span class="basis">Engineering authority of record: <a href="#sheet7">C. Suljak · Sandia National Laboratories sole source</a></span>
     </div>
   </div>
 
@@ -660,7 +648,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </div>
   </div>
-  <p class="figcaption"><b>FIG. 1:</b> Sectional elevation of the metropolitan perimeter showing co-location of data center and landfill with conversion reactor, high voltage transmission infrastructure, and long range power export. Numerals are live: select one to read the claim it illustrates.</p>
+  <p class="figcaption"><b>FIG. 1:</b> Data center and landfill co-located at the metropolitan perimeter, on existing high voltage lines. Numerals are live: select one to read its claim.</p>
 </header>
 
 <div class="docbody">
