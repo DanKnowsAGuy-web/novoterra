@@ -72,13 +72,15 @@ img{max-width:100%;height:auto;display:block}
 .tb-meta{font-size:.78rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
 .tb-meta b{font-weight:600}
 
-/* logo */
-.mark{display:flex;align-items:center;gap:.6rem}
-.mark svg{flex:none;width:36px;height:36px}
-.mark .wordmark{font-family:"Oswald",sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:.04em;line-height:1.05;text-transform:uppercase}
+/* logo: the Continuous Line mark */
+.mark{display:block;min-width:9.5rem}
+.mark .wordmark{display:block;font-family:"Oswald",sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:.03em;line-height:1;text-transform:uppercase}
 .mark .wordmark .novo{color:var(--green)}
 .mark .wordmark .terra{color:var(--navy)}
-.mark .wordmark small{display:block;font-family:"Archivo",sans-serif;font-size:.62rem;letter-spacing:.42em;color:var(--muted);font-weight:500}
+.mark .markline{display:block;width:100%;height:9px;margin:.2rem 0 .25rem}
+.mark .markline path{stroke:var(--navy)}
+.mark .markline polygon{fill:var(--navy)}
+.mark .mark-energy{display:block;font-family:"Archivo",sans-serif;font-size:.6rem;letter-spacing:.46em;color:var(--navy);font-weight:600;text-transform:uppercase;text-align:center}
 
 /* ---------- sheet 1 ---------- */
 .sheet{position:relative}
@@ -548,17 +550,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <header class="sheet" id="sheet1">
   <div class="titleblock" role="banner">
     <div class="mark">
-      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
-        <circle cx="22" cy="22" r="20" fill="none" stroke="#286654" stroke-width="2"/>
-        <g stroke="#f9c56c" stroke-width="2.4" stroke-linecap="round">
-          <line x1="22" y1="6" x2="22" y2="11"/><line x1="33.3" y1="10.7" x2="29.8" y2="14.2"/>
-          <line x1="38" y1="22" x2="33" y2="22"/><line x1="10.7" y1="10.7" x2="14.2" y2="14.2"/>
-          <line x1="6" y1="22" x2="11" y2="22"/>
-        </g>
-        <path d="M22 36c-6-4-8-10 0-16 8 6 6 12 0 16z" fill="#286654"/>
-        <path d="M22 34V22" stroke="#ffffff" stroke-width="1.4"/>
+      <span class="wordmark"><span class="novo">Novo</span><span class="terra">Terra</span></span>
+      <svg class="markline" viewBox="0 0 200 16" aria-hidden="true" preserveAspectRatio="none">
+        <path d="M0 11 H40 L52 2 L64 11 H180" fill="none" stroke="#292657" stroke-width="3" stroke-linejoin="miter"/>
+        <polygon points="180,5 180,17 198,11" fill="#292657"/>
       </svg>
-      <span class="wordmark"><span class="novo">Novo</span><span class="terra">Terra</span><small>Energy</small></span>
+      <small class="mark-energy">Energy</small>
     </div>
     <div class="tb-title display">Technical Prospectus No. 001</div>
     <div class="tb-title display">NovoTerra Energy Center</div>
@@ -859,7 +856,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="smallprint">
       <p>Combined figures are stated against the reference design, one 15 MWth NovoTerra Energy Center, and are preliminary estimates that may vary with operational conditions and site specific factors.</p>
       <p>The reference plants in Singapore and Italy are owned and operated by the technology's originators; their results are presented as evidence of the process, not as NovoTerra's delivered work.</p>
-      <p>Figures and plates are drawn illustrations. The NovoTerra mark shown is a provisional rendering pending final brand artwork.</p>
+      <p>Figures and plates are drawn illustrations.</p>
     </div>
   </footer>
 </section>
