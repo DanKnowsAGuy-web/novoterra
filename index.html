@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovoTerra Energy, Technical Prospectus No. 001</title>
+<meta name="description" content="NovoTerra Energy Center: a proven high temperature conversion process turns waste into baseload power, process steam, clean water, and stable mineral product. Technical prospectus for investors and partners.">
+<meta name="robots" content="noindex, nofollow">
+<script>document.documentElement.classList.add('js','filing');try{if(localStorage.getItem('nt-blueprint')==='1')document.documentElement.classList.add('blueprint')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#241f24;
+  --navy:#292657;
+  --rule:#d6d5dc;
+  --rule-strong:#9a99a8;
+  --amber:#f9c56c;
+  --amber-deep:#b97d1e;
+  --green:#286654;
+  --muted:#4b4a55;
+  --pad:clamp(1rem,4vw,3.5rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+}
+::selection{background:var(--amber);color:var(--navy)}
+:focus-visible{outline:2px solid var(--amber-deep);outline-offset:3px}
+html{scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
+body::-webkit-scrollbar{width:10px;background:#efeff2}
+body::-webkit-scrollbar-thumb{background:var(--navy)}
+a{color:var(--navy);text-underline-offset:3px;text-decoration-thickness:1px}
+img{max-width:100%;height:auto;display:block}
+
+/* ---------- document lettering ---------- */
+.display{font-family:"Oswald","Arial Narrow",sans-serif;text-transform:uppercase;color:var(--navy)}
+.label{
+  font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;
+}
+.ticket{
+  display:inline-block;border:1px solid var(--rule-strong);
+  padding:.15rem .55rem .12rem;font-size:.66rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;
+  background:var(--paper);
+}
+
+/* ---------- title block ---------- */
+.titleblock{
+  display:grid;
+  grid-template-columns:minmax(180px,1fr) 1.5fr 1.2fr .8fr .6fr 1.1fr;
+  border:1.5px solid var(--navy);
+  border-left:0;border-right:0;
+  margin:0;
+}
+.tb-corr a{font-weight:600;color:var(--navy);font-size:.78rem;letter-spacing:.03em}
+.titleblock>div{
+  padding:.6rem 1.1rem;
+  border-right:1px solid var(--rule-strong);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.titleblock>div:last-child{border-right:0}
+.tb-title{font-size:.98rem;font-weight:600;letter-spacing:.06em;line-height:1.25;white-space:nowrap}
+.tb-meta{font-size:.78rem;color:var(--ink);letter-spacing:.04em;white-space:nowrap}
+.tb-meta b{font-weight:600}
+
+/* logo */
+.mark{display:flex;align-items:center;gap:.6rem}
+.mark svg{flex:none;width:36px;height:36px}
+.mark .wordmark{font-family:"Oswald",sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:.04em;line-height:1.05;text-transform:uppercase}
+.mark .wordmark .novo{color:var(--green)}
+.mark .wordmark .terra{color:var(--navy)}
+.mark .wordmark small{display:block;font-family:"Archivo",sans-serif;font-size:.62rem;letter-spacing:.42em;color:var(--muted);font-weight:500}
+
+/* ---------- sheet 1 ---------- */
+.sheet{position:relative}
+.cover-head{padding:clamp(1.2rem,2.6vw,2.2rem) var(--pad) 0}
+h1{
+  font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
+  color:var(--navy);
+  font-size:clamp(1.6rem,3.32vw,2.95rem);
+  line-height:1.08;letter-spacing:.005em;
+  text-wrap:balance;
+}
+.keyfigure{
+  margin-top:clamp(.8rem,1.6vw,1.3rem);
+  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;
+}
+.keyfigure .bar{
+  background:var(--amber);
+  padding:.1rem 1.4rem .2rem;
+}
+.keyfigure .num{
+  font-family:"Oswald",sans-serif;font-weight:700;
+  color:var(--ink);
+  font-size:clamp(1.9rem,4.35vw,4rem);line-height:1.12;
+  letter-spacing:.01em;white-space:nowrap;
+}
+.keyfigure .basis{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* fig 1 */
+.fig1-wrap{margin-top:clamp(.5rem,1.2vw,1rem)}
+.fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
+.fig1-stage{position:relative;min-width:900px;height:clamp(280px,44vh,440px);overflow:hidden}
+.fig1-track{position:relative;width:100%;height:100%;will-change:transform}
+.fig1-track img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+@media (min-width:1001px){
+  html.js .fig1-wrap{height:200vh}
+  html.js .fig1-sticky{position:sticky;top:max(72px,calc(50vh - 260px))}
+  html.js .fig1-scroll{overflow:hidden}
+  html.js .fig1-track{width:150%}
+}
+.reveal-wipe{position:absolute;inset:0;background:var(--paper);pointer-events:none}
+.reveal-wipe .plothead{position:absolute;top:0;bottom:0;width:1.5px;background:var(--navy)}
+html:not(.js) .reveal-wipe,.reveal-wipe.done{display:none}
+
+/* pin callout (desktop) */
+.callout{
+  position:absolute;z-index:6;width:270px;background:var(--paper);
+  border:1px solid var(--navy);padding:.75rem .9rem .8rem;
+  box-shadow:0 8px 22px rgba(41,38,87,.2);
+  font-size:.8rem;line-height:1.5;transform:translate(-50%,-100%);
+}
+.callout::after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:40px;background:var(--navy)}
+.callout b{display:block;color:var(--navy);font-weight:600;margin-bottom:.3rem;padding-right:1.2rem}
+.callout .cticket{display:inline-block;border:1px solid var(--rule-strong);padding:.1rem .45rem;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.4rem}
+.callout a{font-weight:600;font-size:.75rem}
+.callout .cx{position:absolute;top:.15rem;right:.3rem;appearance:none;border:0;background:none;color:var(--muted);font-size:1rem;line-height:1;cursor:pointer;padding:.2rem}
+.callout .cx:hover{color:var(--navy)}
+
+/* coordinates readout + crosshair */
+.figarea{cursor:crosshair}
+.coords{
+  position:fixed;z-index:40;pointer-events:none;display:none;
+  background:var(--paper);border:1px solid var(--rule-strong);color:var(--navy);
+  font-size:.64rem;letter-spacing:.14em;font-weight:600;padding:.18rem .5rem;
+  font-variant-numeric:tabular-nums;
+}
+.coords.on{display:block}
+
+/* running header */
+.runhead{
+  position:fixed;top:0;left:0;right:0;z-index:30;
+  display:flex;align-items:center;gap:1.25rem;
+  background:var(--paper);border-bottom:1.5px solid var(--navy);
+  padding:.45rem var(--pad);
+  transform:translateY(-105%);transition:transform .3s ease-out;
+}
+html.js .runhead.on{transform:none}
+.rh-mark{font-family:"Oswald",sans-serif;font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em}
+.rh-mark .novo{color:var(--green)}
+.rh-mark .terra{color:var(--navy)}
+.rh-sheet{flex:1;text-align:center;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.runhead a{font-size:.75rem;font-weight:600;white-space:nowrap}
+
+/* cyanotype toggle */
+.mode-toggle{
+  position:fixed;right:14px;bottom:14px;z-index:31;
+  appearance:none;background:var(--paper);border:1px solid var(--navy);color:var(--navy);
+  font-family:"Archivo",sans-serif;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:600;padding:.5rem .75rem;cursor:pointer;
+  transition:background .15s ease-out,color .15s ease-out;
+}
+.mode-toggle:hover{background:var(--navy);color:var(--paper)}
+
+/* cyanotype (blueprint) mode */
+html.blueprint{
+  --paper:#10305e;--ink:#dfe6f4;--navy:#e8edf8;
+  --rule:#33507f;--rule-strong:#54709f;--muted:#a5b6d4;
+}
+html.blueprint img{filter:invert(.92) brightness(1.08);mix-blend-mode:screen}
+html.blueprint .core-glow{mix-blend-mode:screen}
+html.blueprint ::selection{background:var(--amber);color:#10305e}
+html.blueprint .pin{box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.keyfigure .num,.corr-cta{color:#241f24}
+
+/* spine progress fill */
+.spinefill{position:absolute;left:26px;top:-56px;width:1.5px;background:var(--navy);height:0;z-index:1}
+html.js .docbody::before{opacity:.16}
+html.js .docbody::after{opacity:0;transition:opacity .3s ease-out}
+html.js .docbody.spine-done::after{opacity:1}
+
+/* caliper brackets on spec rows */
+.spec td{position:relative}
+@media (hover:hover){
+  .spec tbody tr td:first-child::before,.spec tbody tr td:last-child::after{
+    font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy);font-size:1.05rem;
+    position:absolute;top:50%;transform:translateY(-52%);opacity:0;transition:opacity .15s ease-out;
+  }
+  .spec tbody tr td:first-child::before{content:"[";left:.1rem}
+  .spec tbody tr td:last-child::after{content:"]";right:.1rem}
+  .spec tbody tr:hover td:first-child::before,.spec tbody tr:hover td:last-child::after{opacity:1}
+}
+
+/* entrance choreography (skipped entirely under reduced motion) */
+@media (prefers-reduced-motion:no-preference){
+  html.js.filing .titleblock>div,html.js.filing .cover-head>*{opacity:0;transform:translateY(6px)}
+  .titleblock>div,.cover-head>*{transition:opacity .45s ease-out,transform .45s ease-out}
+  .titleblock>div:nth-child(2){transition-delay:.06s}
+  .titleblock>div:nth-child(3){transition-delay:.12s}
+  .titleblock>div:nth-child(4){transition-delay:.18s}
+  .titleblock>div:nth-child(5){transition-delay:.24s}
+  .titleblock>div:nth-child(6){transition-delay:.3s}
+  html.js .keyfigure .bar{transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.8,.2,1) .2s}
+  html.js .keyfigure .bar.go{transform:scaleX(1)}
+  html.js .claims .ticket:not(.stamped){opacity:0}
+  .ticket.stamped{animation:stamp .28s ease-out both}
+  html.js .flows dl div{opacity:0;transform:translateY(8px);transition:opacity .45s ease-out,transform .45s ease-out}
+  html.js .flows dl div.in{opacity:1;transform:none}
+  html.js .seal{opacity:0}
+  html.js .seal.stamped{animation:sealstamp .55s cubic-bezier(.2,1.3,.3,1) both}
+}
+@keyframes stamp{
+  0%{opacity:0;transform:scale(1.25) rotate(-3deg)}
+  60%{opacity:1;transform:scale(.96) rotate(.5deg)}
+  100%{opacity:1;transform:none}
+}
+@keyframes sealstamp{
+  0%{opacity:0;transform:rotate(-14deg) scale(1.55)}
+  70%{opacity:1;transform:rotate(-6.4deg) scale(.98)}
+  100%{opacity:1;transform:rotate(-7deg) scale(1)}
+}
+
+/* print: the page is the eight-sheet document */
+@media print{
+  html{--paper:#ffffff;--ink:#241f24;--navy:#292657;--rule:#d6d5dc;--rule-strong:#9a99a8;--muted:#4b4a55}
+  html img{filter:none!important;mix-blend-mode:normal!important}
+  .runhead,.mode-toggle,.coords,.reveal-wipe,.callout{display:none!important}
+  .fig1-wrap{height:auto!important}
+  .fig1-sticky{position:static!important}
+  .fig1-track{width:100%!important;transform:none!important}
+  .fig1-scroll{overflow:visible!important}
+  .fig1-stage{min-width:0!important}
+  .docbody::before,.docbody::after,.spinefill{display:none!important}
+  .docbody section{break-before:page}
+  .core-glow{animation:none!important;opacity:.7!important}
+  .keyfigure .bar,.claims .ticket,.flows dl div,.seal{opacity:1!important;transform:none!important;animation:none!important}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{margin:12mm}
+}
+.pin{
+  position:absolute;transform:translate(-50%,-50%);
+  appearance:none;border:1px solid var(--navy);background:var(--paper);
+  color:var(--navy);font-family:"Archivo",sans-serif;font-style:italic;
+  font-size:.78rem;font-weight:600;line-height:1;
+  width:2rem;height:2rem;border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 1px 4px rgba(41,38,87,.22);
+  transition:background .15s ease-out,color .15s ease-out;
+}
+.pin:hover{background:var(--navy);color:var(--paper)}
+.pin::after{
+  content:attr(data-part);
+  position:absolute;left:50%;bottom:calc(100% + .5rem);transform:translateX(-50%);
+  white-space:nowrap;background:var(--navy);color:var(--paper);
+  font-style:normal;font-weight:500;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.3rem .6rem;opacity:0;pointer-events:none;
+  transition:opacity .15s ease-out;
+}
+.pin:hover::after,.pin:focus-visible::after{opacity:1}
+.figcaption{
+  border-top:1.5px solid var(--navy);
+  margin:0 var(--pad);
+  padding:.8rem 0 2.2rem;
+  font-size:.8rem;color:var(--ink);letter-spacing:.02em;
+}
+.figcaption b{font-weight:600;color:var(--navy)}
+
+/* ---------- spine: one continuous margin rule threading sheets 2 to 7 ---------- */
+.docbody{position:relative;margin-top:56px}
+.docbody::before{
+  content:"";position:absolute;left:26px;top:-56px;bottom:12px;
+  width:1.5px;background:var(--navy);
+}
+.docbody::after{
+  content:"";position:absolute;left:26px;bottom:0;margin-left:-5.25px;
+  width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-top:9px solid var(--navy);
+}
+.docbody section + section{margin-top:56px}
+
+/* ---------- sheet strips ---------- */
+.strip{
+  display:grid;grid-template-columns:.9fr 2.4fr 1fr;
+  border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule-strong);
+}
+.strip>*{padding:.7rem 1.25rem;display:flex;align-items:center}
+.strip>*:first-child{padding-left:var(--pad)}
+.strip .no{font-size:.72rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:500;border-right:1px solid var(--rule-strong)}
+.strip h2{
+  font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
+  color:var(--navy);font-size:clamp(1.1rem,2vw,1.5rem);letter-spacing:.05em;
+}
+.strip .tag{justify-content:flex-end;font-size:.72rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:500;border-left:1px solid var(--rule-strong)}
+.sheet-body{padding:clamp(1.5rem,3.5vw,3rem) var(--pad) clamp(2rem,4vw,3.5rem)}
+
+/* sheet 2 */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,4rem)}
+.twocol h3{
+  font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
+  font-weight:600;font-size:1rem;letter-spacing:.1em;margin-bottom:.9rem;
+}
+.twocol p{max-width:62ch;margin-bottom:.9rem}
+.twocol p:last-child{margin-bottom:0}
+
+/* sheet 2 forces */
+.forces{padding-top:0}
+.forces-title{
+  font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
+  font-weight:600;font-size:1rem;letter-spacing:.1em;margin-bottom:1rem;
+}
+.forcegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,3rem);border-top:1.5px solid var(--navy);padding-top:1.4rem}
+.force .fno{display:block;font-family:"Oswald",sans-serif;color:var(--navy);font-weight:600;font-size:1.35rem;margin-bottom:.3rem}
+.force b{display:block;font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);font-weight:600;font-size:1.05rem;letter-spacing:.05em;margin-bottom:.4rem}
+.force p{font-size:.95rem;max-width:42ch}
+.converge{
+  margin-top:1.8rem;text-align:center;
+  font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
+  font-weight:600;font-size:clamp(1.05rem,1.8vw,1.4rem);letter-spacing:.06em;
+}
+.basis a{color:var(--muted)}
+.basis a:hover{color:var(--navy)}
+
+/* sheet 3 claims */
+.claims{list-style:none;counter-reset:claim}
+@media (min-width:1001px){
+  .claims{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;grid-auto-flow:column;column-gap:clamp(2.5rem,5vw,5rem)}
+  .claims li:nth-child(4){border-top:1px solid var(--rule)}
+}
+.claims li{
+  counter-increment:claim;
+  display:grid;grid-template-columns:3.2rem 1fr;gap:0 .6rem;
+  padding:1.35rem 0 1.15rem;border-bottom:1px solid var(--rule);
+  scroll-margin-top:5.5rem;
+  transition:background .4s ease-out;
+}
+.claims li:first-child{border-top:1px solid var(--rule)}
+.claims li::before{
+  content:counter(claim) ".";
+  font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy);
+  font-size:1.35rem;line-height:1.35;grid-row:span 2;
+}
+.claims li p{font-size:1.02rem;line-height:1.6}
+.claims li p b{color:var(--navy);font-weight:600}
+.claims li .ticket{margin-top:.7rem;justify-self:start;align-self:start}
+.claims li.flash{background:#fdeecd}
+
+/* sheet 4 machine */
+.machine{display:grid;grid-template-columns:1fr 2fr 1fr;gap:clamp(1rem,2.5vw,2.5rem);align-items:center}
+.flows h3{
+  font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
+  font-weight:600;font-size:.95rem;letter-spacing:.12em;margin-bottom:.7rem;
+  padding-bottom:.45rem;border-bottom:1.5px solid var(--navy);
+}
+.flows dl div{padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.flows dt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.flows dd{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;font-size:.98rem}
+.reactor{position:relative}
+.reactor .core-glow{
+  position:absolute;
+  left:49.5%;top:50.5%;
+  width:24%;aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,#f6a13c 0%,#f9c56c 42%,rgba(249,197,108,0) 72%);
+  mix-blend-mode:multiply;
+  opacity:calc(.25 + .7*var(--heat,.7));
+  animation:breathe 6s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes breathe{
+  0%,100%{transform:translate(-50%,-50%) scale(.94)}
+  50%{transform:translate(-50%,-50%) scale(1.05)}
+}
+@media (prefers-reduced-motion:reduce){
+  .reactor .core-glow{animation:none;opacity:.75}
+  html{scroll-behavior:auto}
+}
+.machine-caption{margin-top:1.4rem;text-align:center;font-size:.8rem;color:var(--ink)}
+.machine-caption b{font-weight:600;color:var(--navy)}
+
+/* sheet 5 table */
+.spec{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.spec caption{text-align:left;padding-bottom:.9rem;font-size:.95rem;color:var(--ink);max-width:75ch}
+.spec th{
+  font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.1em;
+  font-weight:600;color:var(--navy);font-size:.85rem;text-align:left;
+  border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule-strong);
+  padding:.65rem .75rem;
+}
+.spec td{border-bottom:1px solid var(--rule);padding:.6rem .75rem;vertical-align:top}
+.spec td:first-child{color:var(--muted);font-size:.85rem;letter-spacing:.03em;width:38%}
+.spec td:last-child{font-weight:600}
+.footnote{margin-top:1.1rem;font-size:.78rem;color:var(--muted);max-width:80ch}
+
+/* sheet 6 plates */
+.plates{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3.5vw,3rem)}
+.plate figure{border:1px solid var(--rule-strong);padding:1rem}
+.plate img{width:100%;height:auto}
+.plate figcaption{padding-top:.8rem;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.plate figcaption b{color:var(--navy)}
+.attribution{margin-top:1.6rem;max-width:75ch}
+.attribution p{margin-bottom:.7rem}
+.attribution p:last-child{margin-bottom:0}
+
+/* sheet 7 applicants */
+.applicants{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(2rem,4.5vw,4.5rem)}
+.applicant h3{
+  font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
+  font-weight:600;font-size:1.35rem;letter-spacing:.05em;
+}
+.applicant .role{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:.2rem 0 1rem}
+.applicant .leadline{font-size:1.02rem;max-width:58ch;margin-bottom:1.3rem}
+.applicant .leadline b{color:var(--navy);font-weight:600}
+.cred-tiles{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule);margin-bottom:1.3rem}
+.cred-tiles>div{padding:.8rem .9rem .9rem;border-right:1px solid var(--rule)}
+.cred-tiles>div:last-child{border-right:0}
+.cred-tiles b{display:block;font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy);font-size:1.15rem;text-transform:uppercase;letter-spacing:.03em}
+.cred-tiles span{font-size:.72rem;color:var(--muted);line-height:1.45;display:block;margin-top:.25rem}
+.record{list-style:none}
+.record li{display:grid;grid-template-columns:11.5rem 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--rule);font-size:.88rem}
+.record li b{font-weight:600;color:var(--navy);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.5}
+.affil{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.45rem}
+.applicant--second{border-left:1px solid var(--rule-strong);padding-left:clamp(1.5rem,3vw,2.75rem)}
+.applicant--second p{font-size:.92rem;margin:0 0 .9rem;max-width:48ch}
+.applicant--second .affil{margin-top:.9rem}
+
+/* sheet 8 correspondence */
+.corr-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center}
+.seal{
+  justify-self:center;transform:rotate(-7deg);
+  border:2.5px solid var(--navy);outline:1.5px solid var(--navy);outline-offset:5px;
+  padding:1.2rem 1.8rem;text-align:center;color:var(--navy);opacity:.88;
+  max-width:19rem;
+}
+.seal .s1{font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;font-size:1.3rem;letter-spacing:.06em}
+.seal .s2{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border-top:1px solid var(--navy);margin-top:.5rem;padding-top:.5rem}
+.seal .s3{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;margin-top:.45rem}
+.corr{max-width:75ch}
+.corr p{margin-bottom:1.1rem;max-width:62ch}
+.corr .field{
+  display:grid;grid-template-columns:8rem 1fr;
+  border-bottom:1px solid var(--rule-strong);
+  padding:.7rem 0;font-size:.95rem;max-width:36rem;
+}
+.corr .field span:first-child{color:var(--muted);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;align-self:center;font-weight:500}
+.corr .field span:last-child{font-weight:600}
+.corr-cta{
+  display:inline-block;margin-top:1.8rem;background:var(--amber);
+  padding:.55rem 1.6rem .65rem;text-decoration:none;
+  font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
+  font-size:clamp(1.15rem,2.4vw,1.7rem);letter-spacing:.03em;color:var(--ink);
+  transition:background .15s ease-out;
+}
+.corr-cta:hover{background:#f7b94e}
+
+/* footer */
+.endblock{
+  margin-top:clamp(2.5rem,5vw,4rem);
+  border-top:1.5px solid var(--navy);
+  padding:1.2rem var(--pad) 2.5rem;
+}
+.endblock .smallprint{font-size:.75rem;color:var(--muted);max-width:90ch;line-height:1.6}
+.endblock .smallprint p{margin-bottom:.5rem}
+.endrow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.endrow .label b{color:var(--navy)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .titleblock{grid-template-columns:1fr 1fr}
+  .tb-title,.tb-meta{white-space:normal}
+  .titleblock>div{border-bottom:1px solid var(--rule)}
+  .docbody::before,.docbody::after{display:none}
+  .docbody,.docbody section + section{margin-top:40px}
+  .corr-grid{grid-template-columns:1fr}
+  .seal{justify-self:start;margin:0 auto}
+  .forcegrid{grid-template-columns:1fr;gap:1.25rem}
+  .applicants{grid-template-columns:1fr}
+  .applicant--second{border-left:0;padding-left:0;border-top:1px solid var(--rule-strong);padding-top:1.5rem}
+  .cred-tiles{grid-template-columns:1fr 1fr}
+  .cred-tiles>div:nth-child(2){border-right:0}
+  .cred-tiles>div{border-bottom:1px solid var(--rule)}
+  .record li{grid-template-columns:1fr;gap:.15rem}
+  .titleblock>div:nth-child(2n){border-right:0}
+  .keyfigure{align-items:flex-start}
+  .twocol{grid-template-columns:1fr}
+  .machine{grid-template-columns:1fr}
+  .machine .reactor{order:-1;max-width:560px;margin:0 auto}
+  .plates{grid-template-columns:1fr}
+  .strip{grid-template-columns:auto 1fr}
+  .strip .tag{display:none}
+}
+</style>
+</head>
+<body>
+<!--
+THESIS: The offer disclosed like a patent filing to skeptical capital; refuses the climate-startup hero-photo template.
+OWN-WORLD: White drawing-office paper, near-black ink, deep indigo navy #292657 structure, one rationed amber #f9c56c device per viewport, hatched pen-and-ink figures, Oswald engraved caps over Archivo document text, provenance tickets on every claim.
+STORY: A check-writer sees the layer the battery thesis missed, reads numbered claims each carrying its source, and writes to Dan.
+FIRST VIEWPORT: Slim title block; one-line headline; 31.5 GWh ranked hugest on the amber bar right; FIG. 1 full-bleed metro-perimeter panorama with live numeral pins owning the lower two thirds.
+FORM: Technical prospectus / patent drawing, candidate 6 of 7, seed 5592f741, comp-led, approved comp .impeccable/mocks/comp-b.webp.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+
+<div class="runhead" role="navigation" aria-label="Document position">
+  <span class="rh-mark"><span class="novo">Novo</span><span class="terra">Terra</span></span>
+  <span class="rh-sheet">Sheet 1 of 8 · Cover</span>
+  <a href="mailto:dan@yourenergyplus.com?subject=Technical%20Prospectus%20No.%20001">dan@yourenergyplus.com</a>
+</div>
+<button class="mode-toggle" type="button">Cyanotype</button>
+<div class="coords" aria-hidden="true"></div>
+
+<header class="sheet" id="sheet1">
+  <div class="titleblock" role="banner">
+    <div class="mark">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <circle cx="22" cy="22" r="20" fill="none" stroke="#286654" stroke-width="2"/>
+        <g stroke="#f9c56c" stroke-width="2.4" stroke-linecap="round">
+          <line x1="22" y1="6" x2="22" y2="11"/><line x1="33.3" y1="10.7" x2="29.8" y2="14.2"/>
+          <line x1="38" y1="22" x2="33" y2="22"/><line x1="10.7" y1="10.7" x2="14.2" y2="14.2"/>
+          <line x1="6" y1="22" x2="11" y2="22"/>
+        </g>
+        <path d="M22 36c-6-4-8-10 0-16 8 6 6 12 0 16z" fill="#286654"/>
+        <path d="M22 34V22" stroke="#ffffff" stroke-width="1.4"/>
+      </svg>
+      <span class="wordmark"><span class="novo">Novo</span><span class="terra">Terra</span><small>Energy</small></span>
+    </div>
+    <div class="tb-title display">Technical Prospectus No. 001</div>
+    <div class="tb-title display">NovoTerra Energy Center</div>
+    <div class="tb-meta"><b>Filed:</b> August 2026</div>
+    <div class="tb-meta"><b>Sheet</b> 1 of 8</div>
+    <div class="tb-meta tb-corr"><span class="label">Correspondence</span><a href="mailto:dan@yourenergyplus.com?subject=Technical%20Prospectus%20No.%20001">dan@yourenergyplus.com</a></div>
+  </div>
+
+  <div class="cover-head">
+    <h1>Waste is the 24/7 fuel source. The grid is already there.</h1>
+    <div class="keyfigure">
+      <div class="bar"><span class="num"><span class="odo">31.5</span>&nbsp;GWh PER YEAR</span></div>
+      <span class="basis">Basis: ITEA reference plant, Singapore, operating since 2012</span>
+      <span class="basis">Engineering authority of record: <a href="#sheet7">C. Suljak · Sandia National Laboratories sole source</a></span>
+    </div>
+  </div>
+
+  <div class="fig1-wrap">
+    <div class="fig1-sticky">
+      <div class="fig1-scroll">
+        <div class="fig1-stage figarea">
+          <div class="fig1-track">
+            <img src="assets/fig1-panorama.webp" width="2688" height="1010"
+                 alt="Patent style sectional elevation drawing of a metropolitan perimeter: landfill mounds at each edge, rows of high voltage transmission towers, a reactor vessel and a data center building co-located beside the left landfill, city skyline in the distance.">
+            <button class="pin" style="left:5.5%;top:74%"  data-target="claim-1" data-part="10 · Landfill, the fuel">10</button>
+            <button class="pin" style="left:21%;top:60%"   data-target="claim-2" data-part="16 · The reactor">16</button>
+            <button class="pin" style="left:40%;top:56%"   data-target="claim-5" data-part="14 · Data center load">14</button>
+            <button class="pin" style="left:77%;top:60%"   data-target="claim-5" data-part="12 · Interconnection">12</button>
+            <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="figcaption"><b>FIG. 1:</b> Sectional elevation of the metropolitan perimeter showing co-location of data center and landfill with conversion reactor, high voltage transmission infrastructure, and long range power export. Numerals are live: select one to read the claim it illustrates.</p>
+</header>
+
+<div class="docbody">
+<i class="spinefill" aria-hidden="true"></i>
+
+<section class="sheet" id="sheet2" aria-labelledby="h-abstract">
+  <div class="strip">
+    <span class="no">Sheet 2 of 8</span>
+    <h2 id="h-abstract">Abstract &amp; Background</h2>
+    <span class="tag">Disclosure</span>
+  </div>
+  <div class="sheet-body twocol">
+    <div>
+      <h3>Abstract</h3>
+      <p>NovoTerra Energy holds United States access to a proven high temperature conversion process that converts the waste nobody wants into baseload electricity, process steam, recoverable clean water, and a stable mineral product.</p>
+      <p>This prospectus discloses the mechanism, the claims, the reference design, and the basis of every figure. Correspondence is invited.</p>
+    </div>
+    <div>
+      <h3>Background</h3>
+      <p>The prevailing thesis in energy investment is a bet on batteries, with meaningful deployment placed on a horizon near 2030. The debate concerns chemistry and business models, not fuel.</p>
+      <p>Meanwhile a fuel source that renews every day sits at the perimeter of every major metropolitan area: already connected to high voltage infrastructure, already permitted as an industrial site, and already paid to receive its feedstock. This document concerns what can be built now.</p>
+    </div>
+  </div>
+  <div class="sheet-body forces">
+    <h3 class="forces-title">Why now: the three forces</h3>
+    <div class="forcegrid">
+      <div class="force">
+        <span class="fno">1.</span>
+        <b>The load is arriving</b>
+        <p>Data centers are being planned faster than generation can be built, and their buyers need baseload power that runs at night and in still air. The demand is not a forecast; it is in the interconnection queue today.</p>
+      </div>
+      <div class="force">
+        <span class="fno">2.</span>
+        <b>The old exits are closing</b>
+        <p>PFAS scrutiny of land applied manure, biosolids, and compost is rising fast. Disposal is converting into liability, which means fuel is becoming something suppliers pay to hand over.</p>
+      </div>
+      <div class="force">
+        <span class="fno">3.</span>
+        <b>The grid queue is the moat</b>
+        <p>New interconnection takes years. Sites that already carry high voltage lines are the scarcest asset in energy, and landfills have carried them for decades.</p>
+      </div>
+    </div>
+    <p class="converge">All three forces converge on the same acre.</p>
+  </div>
+</section>
+
+
+<section class="sheet" id="sheet3" aria-labelledby="h-claims">
+  <div class="strip">
+    <span class="no">Sheet 3 of 8</span>
+    <h2 id="h-claims">What Is Claimed</h2>
+    <span class="tag">Each claim carries its source</span>
+  </div>
+  <div class="sheet-body">
+    <ol class="claims">
+      <li id="claim-1">
+        <p><b>Waste is a 24/7 fuel source available today.</b> Feedlot and dairy manure, sewage sludge, slaughterhouse residuals, municipal solid waste, and landfill content renew daily and burn independent of weather.</p>
+        <span class="ticket">NovoTerra fuel thesis</span>
+      </li>
+      <li id="claim-2">
+        <p><b>The process converts that waste at 2700 F (1482 C).</b> The high temperature, pressurized oxygen environment completely oxidizes organics and destroys contaminants including PFAS, leaving a stable, glass-like vitreous slag that is safe to handle.</p>
+        <span class="ticket">Technology owner specification</span>
+      </li>
+      <li id="claim-3">
+        <p><b>One 15 MWth NovoTerra Energy Center yields about 31.5 GWh of net electricity per year,</b> about 4 MWe net at 90 percent availability, alongside process steam and a concentrated biogenic CO2 stream.</p>
+        <span class="ticket">Preliminary estimate, reference design</span>
+      </li>
+      <li id="claim-4">
+        <p><b>The process is net positive on water.</b> About 5 to 7 million gallons per year are recovered in excess of process makeup requirements, roughly 15,000 to 20,000 gallons per day.</p>
+        <span class="ticket">Preliminary estimate, reference design</span>
+      </li>
+      <li id="claim-5">
+        <p><b>The geography already works.</b> Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. The grid is already there.</p>
+        <span class="ticket">NovoTerra siting thesis</span>
+      </li>
+      <li id="claim-6">
+        <p><b>The technology is TRL 8, not a horizon bet.</b> The process has operated since 2012 near Singapore at the ITEA 15 MW facility on Jurong Island, and since 2021 in Italy.</p>
+        <span class="ticket">Technology evidence, reference plants</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<section class="sheet" id="sheet4" aria-labelledby="h-machine">
+  <div class="strip">
+    <span class="no">Sheet 4 of 8</span>
+    <h2 id="h-machine">The Machine</h2>
+    <span class="tag">One vessel, five products</span>
+  </div>
+  <div class="sheet-body">
+    <div class="machine">
+      <div class="flows">
+        <h3>Annual inputs</h3>
+        <dl>
+          <div><dt>Feedlot manure, 35,000 head basis</dt><dd>45,600 tons</dd></div>
+          <div><dt>Oxygen, on site air separator</dt><dd>25,550 tons</dd></div>
+        </dl>
+      </div>
+      <div class="reactor">
+        <img src="assets/fig2-reactor.webp" width="2432" height="1792"
+             alt="Patent style cutaway drawing of the cylindrical reactor vessel on saddle stands, inlet piping entering left and outlet piping leaving right, with the circular combustion core at center.">
+        <div class="core-glow" aria-hidden="true"></div>
+      </div>
+      <div class="flows">
+        <h3>Annual outputs</h3>
+        <dl>
+          <div><dt>Net electricity</dt><dd>31.5 GWh</dd></div>
+          <div><dt>Process steam</dt><dd>131,000 to 175,000 tons</dd></div>
+          <div><dt>Biogenic CO2, concentrated</dt><dd>47,000 to 58,000 tons</dd></div>
+          <div><dt>Vitreous slag</dt><dd>1,800 to 3,650 tons</dd></div>
+          <div><dt>Recovered water</dt><dd>5 to 7 million gallons</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="machine-caption"><b>FIG. 2:</b> Cross section of the conversion vessel at operating temperature, 2700 F. The core runs continuously; the fuel arrives daily.</p>
+  </div>
+</section>
+
+
+<section class="sheet" id="sheet5" aria-labelledby="h-design">
+  <div class="strip">
+    <span class="no">Sheet 5 of 8</span>
+    <h2 id="h-design">Reference Design</h2>
+    <span class="tag">15 MWth Energy Center</span>
+  </div>
+  <div class="sheet-body">
+    <table class="spec">
+      <caption>The reference configuration co-locates one 15 MWth NovoTerra Energy Center with a large cattle feedlot and steam flaking feed mill. The same vessel accepts municipal, agricultural, and biosolid feedstocks; siting against a landfill substitutes the fuel column, not the machine.</caption>
+      <tbody>
+        <tr><th colspan="2">Plant</th></tr>
+        <tr><td>Thermal rating</td><td>15 MWth</td></tr>
+        <tr><td>Operating temperature</td><td>2700 F (1482 C)</td></tr>
+        <tr><td>Site footprint</td><td>2 to 3 acres, within 100 to 300 ft of the steam host</td></tr>
+        <tr><td>Technology readiness</td><td>TRL 8, reference plants since 2012</td></tr>
+        <tr><th colspan="2">Annual balance</th></tr>
+        <tr><td>Feedstock in</td><td>45,600 tons manure at 20 percent moisture</td></tr>
+        <tr><td>Oxygen in</td><td>25,550 tons, produced on site</td></tr>
+        <tr><td>Electricity out</td><td>31.5 GWh net (about 4 MWe at 90 percent availability)</td></tr>
+        <tr><td>Steam out</td><td>131,000 to 175,000 tons to the co-located host</td></tr>
+        <tr><td>Water balance</td><td>Net positive, 5 to 7 million gallons recovered</td></tr>
+        <tr><td>Mineral product</td><td>1,800 to 3,650 tons vitreous slag, stable and safe to handle</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">All values are preliminary estimates based on available data and may vary with operational conditions and site specific factors. Unit pricing is pending from the technology owner and is deliberately absent from this document.</p>
+  </div>
+</section>
+
+
+<section class="sheet" id="sheet6" aria-labelledby="h-prior">
+  <div class="strip">
+    <span class="no">Sheet 6 of 8</span>
+    <h2 id="h-prior">Prior Installations</h2>
+    <span class="tag">Technology evidence</span>
+  </div>
+  <div class="sheet-body">
+    <div class="plates">
+      <div class="plate">
+        <figure>
+          <img src="assets/plate-singapore.webp" alt="Line drawing depiction of the ITEA pilot plant on Jurong Island, Singapore: process columns, tanks, and pipe racks at a coastal industrial site.">
+          <figcaption><b>Plate I.</b> ITEA 15 MW facility, Jurong Island, Singapore. Operating since 2012.</figcaption>
+        </figure>
+      </div>
+      <div class="plate">
+        <figure>
+          <img src="assets/plate-italy.webp" alt="Line drawing depiction of the reference plant in Italy: process hall with external pipework, columns, and a storage tank.">
+          <figcaption><b>Plate II.</b> Reference plant, Italy. Operating since 2021.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="attribution">
+      <p>These installations belong to the technology's originators. NovoTerra presents them as proof of the process, never as its own track record; there is no NovoTerra installation in the United States to date. Every performance figure in this prospectus is technology evidence from these plants and from the reference design.</p>
+      <p class="label">Plates are drawn depictions, not photographs.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sheet7" aria-labelledby="h-applicants">
+  <div class="strip">
+    <span class="no">Sheet 7 of 8</span>
+    <h2 id="h-applicants">The Applicants</h2>
+    <span class="tag">Credentials of record</span>
+  </div>
+  <div class="sheet-body applicants">
+    <div class="applicant">
+      <h3>Cliff Suljak</h3>
+      <p class="role">Chief Materials Engineer</p>
+      <p class="leadline"><b>Four decades guarding capital budgets.</b> The institutions that could not afford a wrong decision brought Cliff in first; the record below is why.</p>
+      <div class="cred-tiles">
+        <div><b>Sole source</b><span>22 person team across four DOE and DOD facilities, Sandia National Laboratories</span></div>
+        <div><b>$600M+</b><span>in projects at the Salt River Project</span></div>
+        <div><b>ASTM</b><span>co-wrote the national standards other engineers are tested against</span></div>
+        <div><b>UAE grid</b><span>consulted Dubai, Abu Dhabi, and Sharjah on national grid reliability</span></div>
+      </div>
+      <ul class="record">
+        <li><b>Sandia National Laboratories</b><span>Awarded directly, never bid: five years, 22 engineers, hundreds of task orders across facilities in Albuquerque, Livermore, Tonopah, and Kauai.</span></li>
+        <li><b>Salt River Project</b><span>Built the utility's quality control infrastructure from scratch on programs exceeding $600M; the innovations were adopted by utilities across the country.</span></li>
+        <li><b>York International</b><span>After the Northridge earthquake, hired sole source to save the world's largest thermal storage system; delivered litigation testimony against the county's own engineers and prevailed.</span></li>
+        <li><b>UAE national grid</b><span>A reactive power engagement across Dubai, Abu Dhabi, and Sharjah grew into a full operational assessment of the country's entire power grid.</span></li>
+        <li><b>ASTM committee, 8 years</b><span>Developed test methods for advanced composites and ultra high strength metals in extreme temperature environments, adopted as national acceptance criteria.</span></li>
+      </ul>
+      <div class="affil">
+        <span class="ticket">EPRI</span><span class="ticket">AWS</span><span class="ticket">ASNT</span><span class="ticket">ASM</span><span class="ticket">ASTM</span><span class="ticket">DOE / DOD sole source</span>
+      </div>
+    </div>
+    <div class="applicant applicant--second">
+      <h3>Daniel Gutierrez</h3>
+      <p class="role">CEO and Founder</p>
+      <p>Spartanburg based entrepreneur and energy advocate with 19 years connecting people, capital, and opportunity across 14+ industries and 70+ specialized markets. Former director of FDA registered clinical trials.</p>
+      <p>He leads business development, legislative relationships, and the vendor neutral program strategy that keeps this program accountable to client outcomes, not product margins. He operates fee for performance and has committed to dedicating profits to improving American infrastructure.</p>
+      <div class="affil">
+        <span class="ticket">Spartanburg, SC</span><span class="ticket">14+ industries</span><span class="ticket">Fee for performance</span><span class="ticket">FDA clinical trials</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sheet8" aria-labelledby="h-corr">
+  <div class="strip">
+    <span class="no">Sheet 8 of 8</span>
+    <h2 id="h-corr">Correspondence</h2>
+    <span class="tag">End of document</span>
+  </div>
+  <div class="sheet-body corr-grid">
+    <div class="corr">
+      <p>This prospectus is distributed for discussion with qualified investors and partners. It is a technical disclosure, not an offer of securities, and it contains no pricing by design.</p>
+      <div class="field"><span>Direct to</span><span>Dan, NovoTerra Energy</span></div>
+      <div class="field"><span>Regarding</span><span>Technology licenses and Energy Center siting</span></div>
+      <a class="corr-cta" href="mailto:dan@yourenergyplus.com?subject=Technical%20Prospectus%20No.%20001">dan@yourenergyplus.com</a>
+    </div>
+    <div class="seal" aria-hidden="true">
+      <div class="s1">NovoTerra Energy</div>
+      <div class="s2">Technical Prospectus No. 001</div>
+      <div class="s3">End of Document</div>
+    </div>
+  </div>
+
+  <footer class="endblock">
+    <div class="endrow">
+      <span class="label"><b>NovoTerra Energy</b> · Technical Prospectus No. 001</span>
+      <span class="label">Filed August 2026 · Sheet 8 of 8</span>
+    </div>
+    <div class="smallprint">
+      <p>Combined figures are stated against the reference design, one 15 MWth NovoTerra Energy Center, and are preliminary estimates that may vary with operational conditions and site specific factors.</p>
+      <p>The reference plants in Singapore and Italy are owned and operated by the technology's originators; their results are presented as evidence of the process, not as NovoTerra's delivered work.</p>
+      <p>Figures and plates are drawn illustrations. The NovoTerra mark shown is a provisional rendering pending final brand artwork.</p>
+    </div>
+  </footer>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var doc=document.documentElement;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer=matchMedia('(pointer: fine)').matches;
+  function isDesktop(){return innerWidth>1000}
+
+  /* -------- load-in: the document files itself -------- */
+  function unfile(){doc.classList.remove('filing');var bar=document.querySelector('.keyfigure .bar');if(bar)requestAnimationFrame(function(){bar.classList.add('go')})}
+  addEventListener('load',function(){setTimeout(unfile,120)});
+  setTimeout(unfile,1500);
+
+  /* -------- cyanotype toggle -------- */
+  var tog=document.querySelector('.mode-toggle');
+  function labelTog(){var on=doc.classList.contains('blueprint');tog.textContent=on?'Paper':'Cyanotype';tog.setAttribute('aria-pressed',on)}
+  tog.addEventListener('click',function(){
+    doc.classList.toggle('blueprint');
+    try{localStorage.setItem('nt-blueprint',doc.classList.contains('blueprint')?'1':'0')}catch(e){}
+    labelTog();
+  });
+  labelTog();
+
+  /* -------- odometer -------- */
+  var odo=document.querySelector('.odo');
+  var odoDone=false;
+  function runOdo(){
+    if(odoDone||reduce){if(odo)odo.textContent='31.5';odoDone=true;return}
+    odoDone=true;
+    var t0=null;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/900,1);
+      var e=1-Math.pow(1-p,3);
+      odo.textContent=(31.5*e).toFixed(1);
+      if(p<1)requestAnimationFrame(step);else odo.textContent='31.5';
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* -------- reveal wipe: the drawing plots itself -------- */
+  var wipe=document.querySelector('.reveal-wipe');
+  var plothead=wipe?wipe.querySelector('.plothead'):null;
+  var wiped=false;
+  function runWipe(){
+    if(wiped)return;wiped=true;
+    if(reduce){wipe.classList.add('done');return}
+    var t0=null;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/1500,1);
+      var e=1-Math.pow(1-p,2.2);
+      var x=(e*100).toFixed(2);
+      wipe.style.clipPath='inset(0 0 0 '+x+'%)';
+      plothead.style.left=x+'%';
+      if(p<1)requestAnimationFrame(step);else wipe.classList.add('done');
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* -------- pins: callouts on desktop, jump on touch -------- */
+  var track=document.querySelector('.fig1-track');
+  var openCallout=null;
+  function closeCallout(){if(openCallout){openCallout.remove();openCallout=null}}
+  function jumpTo(id){
+    var t=document.getElementById(id);
+    if(!t)return;
+    t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    t.classList.remove('flash');
+    requestAnimationFrame(function(){
+      t.classList.add('flash');
+      setTimeout(function(){t.classList.remove('flash')},1800);
+    });
+  }
+  document.querySelectorAll('.pin').forEach(function(pin){
+    pin.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      var id=pin.dataset.target;
+      if(!(isDesktop()&&finePointer)){jumpTo(id);return}
+      var claim=document.getElementById(id);
+      if(!claim)return;
+      var was=openCallout&&openCallout.dataset.for===pin.dataset.part;
+      closeCallout();
+      if(was)return;
+      var c=document.createElement('div');
+      c.className='callout';
+      c.dataset.for=pin.dataset.part;
+      var tk=claim.querySelector('.ticket');
+      c.innerHTML='<button class="cx" aria-label="Close">×</button><b>'+claim.querySelector('b').textContent+'</b>'
+        +(tk?'<span class="cticket">'+tk.textContent+'</span><br>':'')
+        +'<a href="#'+id+'">Read claim '+id.replace('claim-','')+'</a>';
+      var x=Math.max(150,Math.min(track.offsetWidth-150,pin.offsetLeft));
+      c.style.left=x+'px';
+      c.style.top=(pin.offsetTop-52)+'px';
+      track.appendChild(c);
+      openCallout=c;
+      c.querySelector('.cx').addEventListener('click',function(e){e.stopPropagation();closeCallout()});
+      c.querySelector('a').addEventListener('click',function(e){e.preventDefault();closeCallout();jumpTo(id)});
+    });
+  });
+  document.addEventListener('click',closeCallout);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCallout()});
+
+  /* -------- crosshair coordinates in figure areas -------- */
+  var coords=document.querySelector('.coords');
+  if(finePointer){
+    document.querySelectorAll('.reactor,.plate figure').forEach(function(el){el.classList.add('figarea')});
+    document.querySelectorAll('.figarea').forEach(function(area){
+      area.addEventListener('mousemove',function(e){
+        var r=area.getBoundingClientRect();
+        var x=String(Math.max(0,Math.round(e.clientX-r.left))).padStart(4,'0');
+        var y=String(Math.max(0,Math.round(e.clientY-r.top))).padStart(4,'0');
+        coords.textContent='X '+x+' · Y '+y;
+        coords.style.left=(e.clientX+16)+'px';
+        coords.style.top=(e.clientY+18)+'px';
+        coords.classList.add('on');
+      });
+      area.addEventListener('mouseleave',function(){coords.classList.remove('on')});
+    });
+  }
+
+  /* -------- intersection choreography -------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var el=en.target;
+      if(el.classList.contains('fig1-stage')){runWipe();runOdo()}
+      else if(el.classList.contains('ticket')){
+        var siblings=[].slice.call(el.closest('.claims')?el.closest('.claims').querySelectorAll('.ticket'):[el]);
+        el.style.animationDelay=(siblings.indexOf(el)%3*70)+'ms';
+        el.classList.add('stamped');io.unobserve(el);
+      }
+      else if(el.classList.contains('flowrow')){
+        el.style.transitionDelay=(el.dataset.i*90)+'ms';
+        el.classList.add('in');io.unobserve(el);
+      }
+      else if(el.classList.contains('seal')){el.classList.add('stamped');io.unobserve(el)}
+    });
+  },{threshold:.35});
+  var stage=document.querySelector('.fig1-stage');
+  if(stage)io.observe(stage);
+  document.querySelectorAll('.claims .ticket').forEach(function(t){io.observe(t)});
+  document.querySelectorAll('.flows dl div').forEach(function(d,i){d.classList.add('flowrow');d.dataset.i=i%5;io.observe(d)});
+  var seal=document.querySelector('.seal');
+  if(seal)io.observe(seal);
+
+  /* -------- scroll driver: scrub, spine, heat, running header -------- */
+  var wrap=document.querySelector('.fig1-wrap');
+  var header=document.getElementById('sheet1');
+  var runhead=document.querySelector('.runhead');
+  var rhSheet=document.querySelector('.rh-sheet');
+  var docbody=document.querySelector('.docbody');
+  var spinefill=document.querySelector('.spinefill');
+  var reactor=document.querySelector('.reactor');
+  var sections=[].slice.call(document.querySelectorAll('.docbody section'));
+  var labels=sections.map(function(s){
+    var no=s.querySelector('.strip .no'),h=s.querySelector('.strip h2');
+    return {el:s,text:(no?no.textContent.trim():'')+' · '+(h?h.textContent.trim():'')};
+  });
+  var ticking=false;
+  function drive(){
+    ticking=false;
+    var sy=scrollY;
+    /* running header + current sheet */
+    var show=sy>header.offsetHeight-120;
+    runhead.classList.toggle('on',show);
+    if(show){
+      var label='Sheet 1 of 8 · Cover';
+      for(var i=0;i<labels.length;i++){
+        if(labels[i].el.getBoundingClientRect().top<=100)label=labels[i].text;
+      }
+      if(rhSheet.textContent!==label)rhSheet.textContent=label;
+    }
+    /* hero scrub pan */
+    if(isDesktop()&&!reduce&&wrap&&track){
+      var span=wrap.offsetHeight-innerHeight*0.72;
+      var p=Math.max(0,Math.min(1,(sy-wrap.offsetTop+72)/Math.max(span,1)));
+      var maxPan=track.offsetWidth-track.parentElement.offsetWidth;
+      track.style.transform='translateX('+(-p*maxPan).toFixed(1)+'px)';
+    }else if(track){
+      track.style.transform='';
+    }
+    /* spine fill */
+    if(docbody&&spinefill){
+      var r=docbody.getBoundingClientRect();
+      var passed=Math.min(Math.max(innerHeight*0.62-r.top,0),r.height+44);
+      spinefill.style.height=passed+'px';
+      docbody.classList.toggle('spine-done',innerHeight+sy>=doc.scrollHeight-60);
+    }
+    /* reactor heat */
+    if(reactor){
+      var rr=reactor.getBoundingClientRect();
+      var d=Math.abs(rr.top+rr.height/2-innerHeight/2);
+      var heat=Math.max(0,1-d/(innerHeight*0.75));
+      reactor.style.setProperty('--heat',heat.toFixed(3));
+    }
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(drive)}}
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll,{passive:true});
+  drive();
+})();
+</script>
+</body>
+</html>
