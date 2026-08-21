@@ -174,6 +174,12 @@ html.blueprint img{filter:invert(.92) brightness(1.08);mix-blend-mode:screen}
 html.blueprint .core-glow{mix-blend-mode:screen}
 html.blueprint ::selection{background:var(--amber);color:#10305e}
 html.blueprint .pin{box-shadow:0 1px 4px rgba(0,0,0,.4)}
+::view-transition-old(root){animation:none}
+::view-transition-new(root){animation:develop .55s cubic-bezier(.16,1,.3,1)}
+@keyframes develop{
+  from{clip-path:circle(0 at calc(100% - 44px) calc(100% - 44px))}
+  to{clip-path:circle(150% at calc(100% - 44px) calc(100% - 44px))}
+}
 .keyfigure .num,.corr-cta{color:#241f24}
 
 /* spine progress fill */
@@ -211,7 +217,11 @@ html.js .docbody.spine-done::after{opacity:1}
   html.js .flows dl div.in{opacity:1;transform:none}
   html.js .seal{opacity:0}
   html.js .seal.stamped{animation:sealstamp .55s cubic-bezier(.2,1.3,.3,1) both}
+  .callout{animation:calloutrise .18s cubic-bezier(.16,1,.3,1) both}
+  .callout::after{animation:leaderdraw .22s cubic-bezier(.16,1,.3,1) both}
 }
+@keyframes calloutrise{from{opacity:0;transform:translate(-50%,-100%) translateY(6px)}to{opacity:1;transform:translate(-50%,-100%)}}
+@keyframes leaderdraw{from{height:0}to{height:40px}}
 @keyframes stamp{
   0%{opacity:0;transform:scale(1.25) rotate(-3deg)}
   60%{opacity:1;transform:scale(.96) rotate(.5deg)}
@@ -237,6 +247,7 @@ html.js .docbody.spine-done::after{opacity:1}
   .docbody section{break-before:page}
   .core-glow{animation:none!important;opacity:.7!important}
   .keyfigure .bar,.claims .ticket,.flows dl div,.seal{opacity:1!important;transform:none!important;animation:none!important}
+  .filed-stamp{display:block}
   body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   @page{margin:12mm}
 }
@@ -412,6 +423,20 @@ html.js .docbody.spine-done::after{opacity:1}
 .plate img{width:100%;height:auto}
 .plate figcaption{padding-top:.8rem;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
 .plate figcaption b{color:var(--navy)}
+.plate-stats{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule);margin-top:1rem}
+.plate-stats>div{padding:.6rem .8rem .7rem;border-right:1px solid var(--rule)}
+.plate-stats>div:last-child{border-right:0}
+.plate-stats b{display:block;font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy);font-size:1.1rem;text-transform:uppercase;letter-spacing:.03em}
+.plate-stats span{font-size:.72rem;color:var(--muted);line-height:1.45;display:block;margin-top:.2rem}
+.plate .ticket{margin-top:.9rem}
+
+/* printed-only filing stamp */
+.filed-stamp{
+  display:none;position:absolute;top:9rem;right:3.5rem;transform:rotate(-8deg);
+  border:2.5px solid var(--navy);outline:1.5px solid var(--navy);outline-offset:4px;
+  padding:.45rem 1rem;color:var(--navy);
+  font-family:"Oswald",sans-serif;font-weight:600;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;
+}
 .attribution{margin-top:1.6rem;max-width:75ch}
 .attribution p{margin-bottom:.7rem}
 .attribution p:last-child{margin-bottom:0}
@@ -545,6 +570,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="tb-meta tb-corr"><span class="label">Correspondence</span><a href="mailto:dan@yourenergyplus.com?subject=Technical%20Prospectus%20No.%20001">dan@yourenergyplus.com</a></div>
   </div>
 
+  <div class="filed-stamp" aria-hidden="true">Filed · August 2026</div>
   <div class="cover-head">
     <h1>Waste is the 24/7 fuel source. The grid is already there.</h1>
     <div class="keyfigure">
@@ -733,14 +759,24 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="plate">
         <figure>
           <img src="assets/plate-singapore.webp" alt="Line drawing depiction of the ITEA pilot plant on Jurong Island, Singapore: process columns, tanks, and pipe racks at a coastal industrial site.">
-          <figcaption><b>Plate I.</b> ITEA 15 MW facility, Jurong Island, Singapore. Operating since 2012.</figcaption>
+          <div class="plate-stats">
+            <div><b>15 MW</b><span>ITEA facility, Jurong Island, Singapore</span></div>
+            <div><b>Since 2012</b><span>in operation</span></div>
+          </div>
+          <figcaption><b>Plate I.</b> ITEA 15 MW facility, Jurong Island, Singapore.</figcaption>
         </figure>
+        <span class="ticket">Technology evidence, reference plant</span>
       </div>
       <div class="plate">
         <figure>
           <img src="assets/plate-italy.webp" alt="Line drawing depiction of the reference plant in Italy: process hall with external pipework, columns, and a storage tank.">
-          <figcaption><b>Plate II.</b> Reference plant, Italy. Operating since 2021.</figcaption>
+          <div class="plate-stats">
+            <div><b>Italy</b><span>second reference plant</span></div>
+            <div><b>Since 2021</b><span>in operation</span></div>
+          </div>
+          <figcaption><b>Plate II.</b> Reference plant, Italy.</figcaption>
         </figure>
+        <span class="ticket">Technology evidence, reference plant</span>
       </div>
     </div>
     <div class="attribution">
@@ -850,10 +886,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   /* -------- cyanotype toggle -------- */
   var tog=document.querySelector('.mode-toggle');
   function labelTog(){var on=doc.classList.contains('blueprint');tog.textContent=on?'Paper':'Cyanotype';tog.setAttribute('aria-pressed',on)}
-  tog.addEventListener('click',function(){
+  function flipMode(){
     doc.classList.toggle('blueprint');
     try{localStorage.setItem('nt-blueprint',doc.classList.contains('blueprint')?'1':'0')}catch(e){}
     labelTog();
+  }
+  tog.addEventListener('click',function(){
+    if(!reduce&&document.startViewTransition){document.startViewTransition(flipMode)}
+    else{flipMode()}
   });
   labelTog();
 
@@ -944,9 +984,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     document.querySelectorAll('.figarea').forEach(function(area){
       area.addEventListener('mousemove',function(e){
         var r=area.getBoundingClientRect();
-        var x=String(Math.max(0,Math.round(e.clientX-r.left))).padStart(4,'0');
-        var y=String(Math.max(0,Math.round(e.clientY-r.top))).padStart(4,'0');
-        coords.textContent='X '+x+' · Y '+y;
+        var overCore=false;
+        if(area.classList.contains('reactor')){
+          var cx=r.left+r.width*0.495,cy=r.top+r.height*0.505,cr=r.width*0.12;
+          var dx=e.clientX-cx,dy=e.clientY-cy;
+          overCore=dx*dx+dy*dy<=cr*cr;
+        }
+        if(overCore){coords.textContent='CORE · 2700 F'}
+        else{
+          var x=String(Math.max(0,Math.round(e.clientX-r.left))).padStart(4,'0');
+          var y=String(Math.max(0,Math.round(e.clientY-r.top))).padStart(4,'0');
+          coords.textContent='X '+x+' · Y '+y;
+        }
         coords.style.left=(e.clientX+16)+'px';
         coords.style.top=(e.clientY+18)+'px';
         coords.classList.add('on');
