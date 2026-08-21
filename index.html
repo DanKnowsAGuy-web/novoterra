@@ -238,9 +238,6 @@ html.js .docbody.spine-done::after{opacity:1}
   html{--paper:#ffffff;--ink:#241f24;--navy:#292657;--rule:#d6d5dc;--rule-strong:#9a99a8;--muted:#4b4a55}
   html img{filter:none!important;mix-blend-mode:normal!important}
   .runhead,.mode-toggle,.coords,.reveal-wipe,.callout{display:none!important}
-  .fig1-wrap{height:auto!important}
-  .fig1-sticky{position:static!important}
-  .fig1-track{width:100%!important;transform:none!important}
   .fig1-scroll{overflow:visible!important}
   .fig1-stage{min-width:0!important}
   .docbody::before,.docbody::after,.spinefill{display:none!important}
@@ -581,18 +578,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </div>
 
   <div class="fig1-wrap">
-    <div class="fig1-sticky">
-      <div class="fig1-scroll">
-        <div class="fig1-stage figarea">
-          <div class="fig1-track">
-            <img src="assets/fig1-panorama.webp" width="2688" height="1010"
-                 alt="Patent style sectional elevation drawing of a metropolitan perimeter: landfill mounds at each edge, rows of high voltage transmission towers, a reactor vessel and a data center building co-located beside the left landfill, city skyline in the distance.">
-            <button class="pin" style="left:5.5%;top:74%"  data-target="claim-1" data-part="10 · Landfill, the fuel">10</button>
-            <button class="pin" style="left:21%;top:60%"   data-target="claim-3" data-part="16 · The reactor">16</button>
-            <button class="pin" style="left:40%;top:56%"   data-target="claim-2" data-part="14 · Data center load">14</button>
-            <button class="pin" style="left:77%;top:60%"   data-target="claim-2" data-part="12 · Interconnection">12</button>
-            <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
-          </div>
+    <div class="fig1-scroll">
+      <div class="fig1-stage figarea">
+        <div class="fig1-track">
+          <img src="assets/fig1-panorama.webp" width="2688" height="1010"
+               alt="Patent style sectional elevation drawing of a metropolitan perimeter: landfill mounds at each edge, rows of high voltage transmission towers, a reactor vessel and a data center building co-located beside the left landfill, city skyline in the distance.">
+          <button class="pin" style="left:5.5%;top:74%"  data-target="claim-1" data-part="10 · Landfill, the fuel">10</button>
+          <button class="pin" style="left:21%;top:60%"   data-target="claim-3" data-part="16 · The reactor">16</button>
+          <button class="pin" style="left:40%;top:56%"   data-target="claim-2" data-part="14 · Data center load">14</button>
+          <button class="pin" style="left:77%;top:60%"   data-target="claim-2" data-part="12 · Interconnection">12</button>
+          <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
         </div>
       </div>
     </div>
