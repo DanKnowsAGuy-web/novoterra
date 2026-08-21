@@ -112,12 +112,6 @@ h1{
 .fig1-stage{position:relative;min-width:900px;height:clamp(280px,44vh,440px);overflow:hidden}
 .fig1-track{position:relative;width:100%;height:100%;will-change:transform}
 .fig1-track img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
-@media (min-width:1001px){
-  html.js .fig1-wrap{height:200vh}
-  html.js .fig1-sticky{position:sticky;top:max(72px,calc(50vh - 260px))}
-  html.js .fig1-scroll{overflow:hidden}
-  html.js .fig1-track{width:150%}
-}
 .reveal-wipe{position:absolute;inset:0;background:var(--paper);pointer-events:none}
 .reveal-wipe .plothead{position:absolute;top:0;bottom:0;width:1.5px;background:var(--navy)}
 html:not(.js) .reveal-wipe,.reveal-wipe.done{display:none}
@@ -329,6 +323,16 @@ html.js .docbody.spine-done::after{opacity:1}
 }
 .basis a{color:var(--muted)}
 .basis a:hover{color:var(--navy)}
+
+/* procedure */
+.procedure{margin:.3rem 0 1.6rem;max-width:34rem}
+.procedure ol{list-style:none;counter-reset:step;border-top:1.5px solid var(--navy)}
+.procedure li{
+  counter-increment:step;display:grid;grid-template-columns:1.9rem 1fr;
+  padding:.5rem 0;border-bottom:1px solid var(--rule);font-size:.95rem;
+}
+.procedure li::before{content:counter(step) ".";font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy)}
+.lastword{margin:clamp(2rem,4vw,3.2rem) var(--pad) 0}
 
 /* sheet 3 claims */
 .claims{list-style:none;counter-reset:claim}
@@ -558,9 +562,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             <img src="assets/fig1-panorama.webp" width="2688" height="1010"
                  alt="Patent style sectional elevation drawing of a metropolitan perimeter: landfill mounds at each edge, rows of high voltage transmission towers, a reactor vessel and a data center building co-located beside the left landfill, city skyline in the distance.">
             <button class="pin" style="left:5.5%;top:74%"  data-target="claim-1" data-part="10 · Landfill, the fuel">10</button>
-            <button class="pin" style="left:21%;top:60%"   data-target="claim-2" data-part="16 · The reactor">16</button>
-            <button class="pin" style="left:40%;top:56%"   data-target="claim-5" data-part="14 · Data center load">14</button>
-            <button class="pin" style="left:77%;top:60%"   data-target="claim-5" data-part="12 · Interconnection">12</button>
+            <button class="pin" style="left:21%;top:60%"   data-target="claim-3" data-part="16 · The reactor">16</button>
+            <button class="pin" style="left:40%;top:56%"   data-target="claim-2" data-part="14 · Data center load">14</button>
+            <button class="pin" style="left:77%;top:60%"   data-target="claim-2" data-part="12 · Interconnection">12</button>
             <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
           </div>
         </div>
@@ -582,6 +586,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="sheet-body twocol">
     <div>
       <h3>Abstract</h3>
+      <p class="label" style="margin-bottom:.8rem">Prepared for allocators deciding their energy, AI, and data center exposure before 2030.</p>
       <p>NovoTerra Energy holds United States access to a proven high temperature conversion process that converts the waste nobody wants into baseload electricity, process steam, recoverable clean water, and a stable mineral product.</p>
       <p>This prospectus discloses the mechanism, the claims, the reference design, and the basis of every figure. Correspondence is invited.</p>
     </div>
@@ -628,20 +633,20 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <span class="ticket">NovoTerra fuel thesis</span>
       </li>
       <li id="claim-2">
+        <p><b>The geography already works.</b> Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. The grid is already there.</p>
+        <span class="ticket">NovoTerra siting thesis</span>
+      </li>
+      <li id="claim-3">
         <p><b>The process converts that waste at 2700 F (1482 C).</b> The high temperature, pressurized oxygen environment completely oxidizes organics and destroys contaminants including PFAS, leaving a stable, glass-like vitreous slag that is safe to handle.</p>
         <span class="ticket">Technology owner specification</span>
       </li>
-      <li id="claim-3">
+      <li id="claim-4">
         <p><b>One 15 MWth NovoTerra Energy Center yields about 31.5 GWh of net electricity per year,</b> about 4 MWe net at 90 percent availability, alongside process steam and a concentrated biogenic CO2 stream.</p>
         <span class="ticket">Preliminary estimate, reference design</span>
       </li>
-      <li id="claim-4">
+      <li id="claim-5">
         <p><b>The process is net positive on water.</b> About 5 to 7 million gallons per year are recovered in excess of process makeup requirements, roughly 15,000 to 20,000 gallons per day.</p>
         <span class="ticket">Preliminary estimate, reference design</span>
-      </li>
-      <li id="claim-5">
-        <p><b>The geography already works.</b> Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. The grid is already there.</p>
-        <span class="ticket">NovoTerra siting thesis</span>
       </li>
       <li id="claim-6">
         <p><b>The technology is TRL 8, not a horizon bet.</b> The process has operated since 2012 near Singapore at the ITEA 15 MW facility on Jurong Island, and since 2021 in Italy.</p>
@@ -794,6 +799,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="sheet-body corr-grid">
     <div class="corr">
       <p>This prospectus is distributed for discussion with qualified investors and partners. It is a technical disclosure, not an offer of securities, and it contains no pricing by design.</p>
+      <div class="procedure">
+        <h3 class="forces-title">Procedure</h3>
+        <ol>
+          <li>Correspond. Replies are read by the applicants directly.</li>
+          <li>Review the site math against your portfolio or holdings.</li>
+          <li>License the technology or co-site the first installation.</li>
+        </ol>
+      </div>
       <div class="field"><span>Direct to</span><span>Dan, NovoTerra Energy</span></div>
       <div class="field"><span>Regarding</span><span>Technology licenses and Energy Center siting</span></div>
       <a class="corr-cta" href="mailto:dan@yourenergyplus.com?subject=Technical%20Prospectus%20No.%20001">dan@yourenergyplus.com</a>
@@ -804,6 +817,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="s3">End of Document</div>
     </div>
   </div>
+
+  <p class="converge lastword">The fuel renews tonight.</p>
 
   <footer class="endblock">
     <div class="endrow">
@@ -966,7 +981,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   if(seal)io.observe(seal);
 
   /* -------- scroll driver: scrub, spine, heat, running header -------- */
-  var wrap=document.querySelector('.fig1-wrap');
   var header=document.getElementById('sheet1');
   var runhead=document.querySelector('.runhead');
   var rhSheet=document.querySelector('.rh-sheet');
@@ -991,15 +1005,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         if(labels[i].el.getBoundingClientRect().top<=100)label=labels[i].text;
       }
       if(rhSheet.textContent!==label)rhSheet.textContent=label;
-    }
-    /* hero scrub pan */
-    if(isDesktop()&&!reduce&&wrap&&track){
-      var span=wrap.offsetHeight-innerHeight*0.72;
-      var p=Math.max(0,Math.min(1,(sy-wrap.offsetTop+72)/Math.max(span,1)));
-      var maxPan=track.offsetWidth-track.parentElement.offsetWidth;
-      track.style.transform='translateX('+(-p*maxPan).toFixed(1)+'px)';
-    }else if(track){
-      track.style.transform='';
     }
     /* spine fill */
     if(docbody&&spinefill){
