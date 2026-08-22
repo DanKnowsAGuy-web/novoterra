@@ -105,16 +105,16 @@ img{max-width:100%;height:auto;display:block}
 
 /* ---------- sheet 1 ---------- */
 .sheet{position:relative}
-.cover-head{padding:clamp(1.2rem,2.6vw,2.2rem) var(--pad) 0}
+.cover-head{padding:clamp(.9rem,1.6vw,1.3rem) var(--pad) 0}
 h1{
   font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
   color:var(--navy);
-  font-size:clamp(1.6rem,3.32vw,2.95rem);
+  font-size:clamp(1.6rem,3vw,2.6rem);
   line-height:1.08;letter-spacing:.005em;
   text-wrap:balance;
 }
 .keyfigure{
-  margin-top:clamp(.8rem,1.6vw,1.3rem);
+  margin-top:clamp(.4rem,.9vw,.7rem);
   display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;
 }
 .keyfigure .bar{
@@ -124,12 +124,12 @@ h1{
 .keyfigure .num{
   font-family:"Oswald",sans-serif;font-weight:700;
   color:var(--ink);
-  font-size:clamp(1.9rem,4.35vw,4rem);line-height:1.12;
+  font-size:clamp(1.9rem,3.9vw,3.5rem);line-height:1.12;
   letter-spacing:.01em;white-space:nowrap;
 }
 
 /* fig 1 */
-.fig1-wrap{margin-top:clamp(.5rem,1.2vw,1rem);position:relative}
+.fig1-wrap{margin-top:clamp(.3rem,.6vw,.5rem);position:relative}
 .pan-hint{
   position:absolute;right:10px;bottom:12px;z-index:7;display:none;
   background:var(--paper);border:1px solid var(--rule-strong);color:var(--navy);
@@ -140,13 +140,14 @@ h1{
 @media (max-width:1000px){html.js .pan-hint{display:block}}
 .fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
 .fig1-stage{position:relative;min-width:900px;overflow:hidden}
-.fig1-track{position:relative;width:100%;aspect-ratio:2688/1210}
+/* track shows the drawing with its empty top sky band (100 of 1210 source px) cropped away */
+.fig1-track{position:relative;width:100%;aspect-ratio:2688/1110}
 .plx{position:absolute;inset:0;--tx:0px;--ty:0px}
-.plx img{width:100%;height:auto;display:block;mix-blend-mode:multiply;transform:translate(var(--tx),var(--ty));will-change:transform}
+.plx img{width:100%;height:auto;display:block;margin-top:-3.72%;mix-blend-mode:multiply;transform:translate(var(--tx),var(--ty));will-change:transform}
 .plx .powerflow{transform:translate(var(--tx),var(--ty))}
 /* combustion material: the ember in the hero vessel and the energy pulses on the wires */
 .hero-ember{
-  position:absolute;left:46.2%;top:55.5%;width:8%;aspect-ratio:1;
+  position:absolute;left:46.2%;top:51.5%;width:8%;aspect-ratio:1;
   transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px));border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#f39b2d 0%,rgba(249,197,108,.9) 45%,rgba(249,197,108,0) 70%);
   mix-blend-mode:multiply;
@@ -744,7 +745,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div class="fig1-track">
           <div class="plx" data-depth="-.45">
             <img src="assets/layers/l4-grid.webp" alt="">
-            <svg class="powerflow" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
+            <svg class="powerflow" viewBox="0 31.4 1000 348.6" preserveAspectRatio="none" aria-hidden="true">
               <path id="wirepath" d="M496 65 C 520 95, 535 105, 554 110 C 580 122, 598 128, 615 135 C 640 148, 660 160, 677 169 C 705 182, 735 189, 758 194 C 785 202, 800 208, 815 214 C 835 220, 875 230, 919 239 C 947 243, 975 247, 1000 250" fill="none" stroke="none"/>
               <circle class="pulse" r="3.4"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
               <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
@@ -752,21 +753,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
               <path id="feedpath" class="feeder" d="M751 202 C 742 228, 722 252, 699 271"/>
               <circle class="pulse" r="3"><animateMotion dur="4.5s" repeatCount="indefinite"><mpath href="#feedpath"/></animateMotion></circle>
             </svg>
-            <button class="pin" style="left:61%;top:50%" data-target="claim-2" data-part="12 · Interconnection">12</button>
+            <button class="pin" style="left:61%;top:45.5%" data-target="claim-2" data-part="12 · Interconnection">12</button>
           </div>
           <div class="plx" data-depth="-.28">
             <img src="assets/layers/l3-halls.webp" alt="">
-            <button class="pin" style="left:77%;top:73%" data-target="claim-2" data-part="14 · Data center load">14</button>
+            <button class="pin" style="left:77%;top:70.6%" data-target="claim-2" data-part="14 · Data center load">14</button>
           </div>
           <div class="plx" data-depth=".3">
             <img src="assets/layers/l2-vessel.webp" alt="">
             <div class="hero-ember" aria-hidden="true"></div>
-            <button class="pin" style="left:49.5%;top:72%" data-target="claim-core" data-part="16 · The reactor">16</button>
+            <button class="pin" style="left:49.5%;top:69.5%" data-target="claim-core" data-part="16 · The reactor">16</button>
           </div>
           <div class="plx" data-depth="1">
             <img src="assets/layers/l1-feedstock.webp"
                  alt="Layered pen and ink drawing: an agricultural feedstock yard with a dump truck and dozer feeds a large conversion vessel by conveyor; data center halls, transmission towers, and a city skyline recede behind it.">
-            <button class="pin" style="left:13%;top:60%"   data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
+            <button class="pin" style="left:13%;top:56.4%"   data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
           </div>
           <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
         </div>
