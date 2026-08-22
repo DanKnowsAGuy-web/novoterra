@@ -115,7 +115,14 @@ h1{
 }
 .keyfigure{
   margin-top:clamp(.4rem,.9vw,.7rem);
-  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;
+  display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;
+}
+/* desktop: the headline block lives in the drawing's sky, two lines plus the figure bar beneath */
+@media (min-width:1001px){
+  .cover-head{position:relative;z-index:6;pointer-events:none}
+  .cover-head h1{max-width:14.5em}
+  .keyfigure .num{font-size:clamp(1.9rem,3.1vw,2.8rem)}
+  .sheet .fig1-wrap{margin-top:-148px}
 }
 .keyfigure .bar{
   background:var(--amber);
@@ -137,7 +144,6 @@ h1{
   padding:.3rem .6rem;pointer-events:none;transition:opacity .35s ease-out;
 }
 .pan-hint.off{opacity:0}
-@media (max-width:1000px){html.js .pan-hint{display:block}}
 .fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
 .fig1-stage{position:relative;min-width:900px;overflow:hidden}
 /* track shows the drawing with its empty top sky band (100 of 1210 source px) cropped away */
@@ -691,6 +697,19 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   .cicon{width:44px;height:44px}
   ol.claims--insight li{grid-template-columns:120px 1fr}
   .keyfigure{align-items:flex-start}
+  /* mobile hero: no panning; the four planes collapse into one tight collage frame.
+     The landfill leads at the left edge, the vessel core peeks from behind it,
+     halls and towers tuck in behind; scroll parallax separates them. */
+  .fig1-scroll{overflow:visible}
+  .fig1-stage{min-width:0}
+  .fig1-track{aspect-ratio:390/360}
+  .plx img{margin-top:0;transform:translate(var(--tx),var(--ty)) translate(var(--mx,0%),var(--my,0%)) scale(var(--ms,1));transform-origin:0 0}
+  .fig1-track .plx:nth-child(1) img{--mx:-13%;--my:35%;--ms:1.5}
+  .fig1-track .plx:nth-child(2) img{--mx:-28.7%;--my:27%;--ms:1.5}
+  .fig1-track .plx:nth-child(3) img{--mx:-20.5%;--my:0%;--ms:1.7}
+  .fig1-track .plx:nth-child(4) img{--mx:0%;--my:35%;--ms:1.7}
+  .fig1-track .pin,.fig1-track .powerflow,.pan-hint{display:none}
+  .hero-ember{left:58%;top:46%;width:13.6%}
   .twocol{grid-template-columns:1fr}
   .machine{grid-template-columns:1fr}
   .machine .reactor{max-width:560px;margin:0 auto}
