@@ -141,20 +141,20 @@ h1{
 .fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
 .fig1-stage{position:relative;min-width:900px;overflow:hidden}
 .fig1-track{position:relative;width:100%;aspect-ratio:2688/1060}
-.plx{position:absolute;inset:0;--ty:0px}
-.plx img{width:100%;height:auto;display:block;mix-blend-mode:multiply;transform:translateY(var(--ty));will-change:transform}
-.plx .powerflow{transform:translateY(var(--ty))}
+.plx{position:absolute;inset:0;--tx:0px;--ty:0px}
+.plx img{width:100%;height:auto;display:block;mix-blend-mode:multiply;transform:translate(var(--tx),var(--ty));will-change:transform}
+.plx .powerflow{transform:translate(var(--tx),var(--ty))}
 /* combustion material: the ember in the hero vessel and the energy pulses on the wires */
 .hero-ember{
   position:absolute;left:47.4%;top:40%;width:9%;aspect-ratio:1;
-  transform:translate(-50%,-50%) translateY(var(--ty,0px));border-radius:50%;pointer-events:none;
+  transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px));border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#f39b2d 0%,rgba(249,197,108,.9) 45%,rgba(249,197,108,0) 70%);
   mix-blend-mode:multiply;
   animation:emberpulse 3.6s ease-in-out infinite;
 }
 @keyframes emberpulse{
-  0%,100%{opacity:.55;transform:translate(-50%,-50%) translateY(var(--ty,0px)) scale(.82)}
-  50%{opacity:1;transform:translate(-50%,-50%) translateY(var(--ty,0px)) scale(1.18)}
+  0%,100%{opacity:.55;transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px)) scale(.82)}
+  50%{opacity:1;transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px)) scale(1.18)}
 }
 html.blueprint .hero-ember{mix-blend-mode:screen}
 .powerflow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -352,7 +352,7 @@ html.js .docbody.spine-done::after{opacity:1}
   @page{margin:12mm}
 }
 .pin{
-  position:absolute;transform:translate(-50%,-50%) translateY(var(--ty,0px));
+  position:absolute;transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px));
   appearance:none;border:1px solid var(--navy);background:var(--paper);
   color:var(--navy);font-family:"Archivo",sans-serif;font-style:italic;
   font-size:.78rem;font-weight:600;line-height:1;
@@ -1395,6 +1395,46 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   var rhSheet=document.querySelector('.rh-sheet');
   var docbody=document.querySelector('.docbody');
   var plxEls=[].slice.call(document.querySelectorAll('.plx'));
+  var plxCur=plxEls.map(function(){return{x:0,y:0}});
+  var plxTgt=plxEls.map(function(){return{x:0,y:0}});
+  var plxMouse=plxEls.map(function(){return{x:0,y:0}});
+  var plxScroll=plxEls.map(function(){return 0});
+  var plxRaf=null;
+  function plxTick(){
+    var live=false;
+    for(var i=0;i<plxEls.length;i++){
+      var c=plxCur[i],t=plxTgt[i];
+      c.x+=(t.x-c.x)*.14;c.y+=(t.y-c.y)*.14;
+      if(Math.abs(t.x-c.x)>.15||Math.abs(t.y-c.y)>.15)live=true;
+      plxEls[i].style.setProperty('--tx',c.x.toFixed(1)+'px');
+      plxEls[i].style.setProperty('--ty',c.y.toFixed(1)+'px');
+    }
+    plxRaf=live?requestAnimationFrame(plxTick):null;
+  }
+  function plxKick(){if(!plxRaf&&plxEls.length)plxRaf=requestAnimationFrame(plxTick)}
+  var plxStage=document.querySelector('.fig1-stage');
+  if(plxStage&&!reduce&&finePointer){
+    plxStage.addEventListener('mousemove',function(e){
+      var r=plxStage.getBoundingClientRect();
+      var mx=(e.clientX-r.left)/r.width-0.5;
+      var my=(e.clientY-r.top)/r.height-0.5;
+      for(var i=0;i<plxEls.length;i++){
+        var d=parseFloat(plxEls[i].dataset.depth);
+        plxMouse[i].x=mx*38*d;
+        plxMouse[i].y=my*20*d;
+        plxTgt[i].x=plxMouse[i].x;
+        plxTgt[i].y=plxScroll[i]+plxMouse[i].y;
+      }
+      plxKick();
+    });
+    plxStage.addEventListener('mouseleave',function(){
+      for(var i=0;i<plxEls.length;i++){
+        plxMouse[i].x=0;plxMouse[i].y=0;
+        plxTgt[i].x=0;plxTgt[i].y=plxScroll[i];
+      }
+      plxKick();
+    });
+  }
   var spinefill=document.querySelector('.spinefill');
   var reactor=document.querySelector('.reactor');
   var sections=[].slice.call(document.querySelectorAll('.docbody section'));
@@ -1430,13 +1470,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       var heat=Math.max(0,1-d/(innerHeight*0.75));
       reactor.style.setProperty('--heat',heat.toFixed(3));
     }
-    /* hero parallax planes */
+    /* hero parallax planes: scroll component feeds the lerp targets */
     if(!reduce&&plxEls.length&&track){
       var tr=track.getBoundingClientRect();
       var pp=Math.max(0,Math.min(1,(innerHeight-tr.top)/(innerHeight+tr.height)));
       for(var k=0;k<plxEls.length;k++){
-        plxEls[k].style.setProperty('--ty',((pp-0.5)*24*parseFloat(plxEls[k].dataset.depth)).toFixed(1)+'px');
+        plxScroll[k]=(pp-0.5)*40*parseFloat(plxEls[k].dataset.depth);
+        plxTgt[k].y=plxScroll[k]+plxMouse[k].y;
+        plxTgt[k].x=plxMouse[k].x;
       }
+      plxKick();
     }
     /* plate orbits */
     driveOrbits();
