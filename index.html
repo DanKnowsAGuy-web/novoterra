@@ -151,12 +151,51 @@ h1{
 .plx{position:absolute;inset:0;--tx:0px;--ty:0px}
 .plx img{width:100%;height:auto;display:block;margin-top:-3.72%;mix-blend-mode:multiply;transform:translate(var(--tx),var(--ty));will-change:transform}
 .plx .powerflow{transform:translate(var(--tx),var(--ty))}
+/* per-layer effect overlays: drawn in the artwork's own 2688x1210 space so they ride
+   the layer's parallax and the mobile collage transform exactly like the drawing */
+.plx .layerfx{
+  position:absolute;left:0;top:0;width:100%;aspect-ratio:2688/1210;height:auto;
+  margin-top:-3.72%;pointer-events:none;display:block;
+  transform:translate(var(--tx),var(--ty));will-change:transform;
+}
+.layerfx .wisp{fill:none;stroke:var(--muted);stroke-width:3.5;stroke-linecap:round;opacity:0}
+html.js .layerfx .wisp{animation:smokedrift 7s ease-out infinite}
+html.js .layerfx .wisp.w2{animation-delay:2.3s}
+html.js .layerfx .wisp.w3{animation-delay:4.6s}
+@keyframes smokedrift{
+  0%{opacity:0;transform:translate(-16px,4px)}
+  22%{opacity:.42}
+  70%{opacity:.16}
+  100%{opacity:0;transform:translate(52px,-8px)}
+}
+.layerfx .convey{
+  fill:none;stroke:var(--amber);stroke-width:9;opacity:.55;
+  stroke-dasharray:.1 40;stroke-linecap:round;
+  animation:conveyup 1.7s linear infinite;
+}
+@keyframes conveyup{to{stroke-dashoffset:-40.1}}
+.layerfx .fleck{fill:var(--ink);opacity:0}
+.fig1-track.tip .fleck{animation:flecktip 1.35s cubic-bezier(.3,.1,.7,1) forwards}
+.fig1-track.tip .fleck:nth-child(2){animation-delay:.18s}
+.fig1-track.tip .fleck:nth-child(3){animation-delay:.36s}
+.fig1-track.tip .fleck:nth-child(4){animation-delay:.55s}
+.fig1-track.tip .fleck:nth-child(5){animation-delay:.78s}
+@keyframes flecktip{
+  0%{opacity:0;transform:translate(0,0) rotate(0deg)}
+  12%{opacity:.85}
+  100%{opacity:0;transform:translate(128px,192px) rotate(210deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  .layerfx .wisp,.layerfx .fleck{animation:none!important;opacity:0!important}
+  .layerfx .convey{animation:none;opacity:.35}
+}
 /* combustion material: the ember in the hero vessel and the energy pulses on the wires */
 .hero-ember{
   position:absolute;left:46.2%;top:51.5%;width:8%;aspect-ratio:1;
   transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px));border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#f39b2d 0%,rgba(249,197,108,.9) 45%,rgba(249,197,108,0) 70%);
   mix-blend-mode:multiply;
+  filter:brightness(calc(1 - var(--flare,0)*.35)) saturate(calc(1 + var(--flare,0)*.5));
   animation:emberpulse 3.6s ease-in-out infinite;
 }
 @keyframes emberpulse{
@@ -165,9 +204,9 @@ h1{
 }
 html.blueprint .hero-ember{mix-blend-mode:screen}
 .powerflow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.powerflow .pulse{fill:var(--amber);opacity:.55}
+.powerflow .pulse{fill:var(--amber);opacity:calc(.55 + var(--flare,0)*.45);r:calc(3.4px + var(--flare,0)*2.2px)}
 .powerflow .feeder{stroke:var(--navy);stroke-width:1.1;fill:none;opacity:.45}
-html.blueprint .powerflow .pulse{opacity:.8}
+html.blueprint .powerflow .pulse{opacity:calc(.8 + var(--flare,0)*.2)}
 @media (prefers-reduced-motion:reduce){
   .powerflow{display:none}
   .hero-ember{animation:none;opacity:.6}
@@ -703,11 +742,11 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   .fig1-scroll{overflow:visible}
   .fig1-stage{min-width:0}
   .fig1-track{aspect-ratio:390/360}
-  .plx img{margin-top:0;transform:translate(var(--tx),var(--ty)) translate(var(--mx,0%),var(--my,0%)) scale(var(--ms,1));transform-origin:0 0}
-  .fig1-track .plx:nth-child(1) img{--mx:-13%;--my:35%;--ms:1.5}
-  .fig1-track .plx:nth-child(2) img{--mx:-28.7%;--my:27%;--ms:1.5}
-  .fig1-track .plx:nth-child(3) img{--mx:-20.5%;--my:0%;--ms:1.7}
-  .fig1-track .plx:nth-child(4) img{--mx:0%;--my:35%;--ms:1.7}
+  .plx img,.plx .layerfx{margin-top:0;transform:translate(var(--tx),var(--ty)) translate(var(--mx,0%),var(--my,0%)) scale(var(--ms,1));transform-origin:0 0}
+  .fig1-track .plx:nth-child(1){--mx:-13%;--my:35%;--ms:1.5}
+  .fig1-track .plx:nth-child(2){--mx:-28.7%;--my:27%;--ms:1.5}
+  .fig1-track .plx:nth-child(3){--mx:-20.5%;--my:0%;--ms:1.7}
+  .fig1-track .plx:nth-child(4){--mx:0%;--my:35%;--ms:1.7}
   .fig1-track .pin,.fig1-track .powerflow,.pan-hint{display:none}
   .hero-ember{left:58%;top:46%;width:13.6%}
   .twocol{grid-template-columns:1fr}
@@ -780,12 +819,25 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </div>
           <div class="plx" data-depth=".3">
             <img src="assets/layers/l2-vessel.webp" alt="">
+            <svg class="layerfx" viewBox="0 0 2688 1210" aria-hidden="true">
+              <path class="wisp w1" d="M1284 130 C 1310 118, 1332 126, 1354 112 C 1374 100, 1392 108, 1410 98"/>
+              <path class="wisp w2" d="M1287 138 C 1316 130, 1340 138, 1364 124 C 1384 114, 1400 120, 1418 110"/>
+              <path class="wisp w3" d="M1282 124 C 1306 112, 1324 118, 1346 106"/>
+              <path class="convey" d="M968 1015 C 1035 845, 1180 505, 1272 318"/>
+            </svg>
             <div class="hero-ember" aria-hidden="true"></div>
             <button class="pin" style="left:49.5%;top:69.5%" data-target="claim-core" data-part="16 · The reactor">16</button>
           </div>
           <div class="plx" data-depth="1">
             <img src="assets/layers/l1-feedstock.webp"
                  alt="Layered pen and ink drawing: an agricultural feedstock yard with a dump truck and dozer feeds a large conversion vessel by conveyor; data center halls, transmission towers, and a city skyline recede behind it.">
+            <svg class="layerfx" viewBox="0 0 2688 1210" aria-hidden="true">
+              <circle class="fleck" cx="396" cy="452" r="7"/>
+              <circle class="fleck" cx="412" cy="441" r="5"/>
+              <rect class="fleck" x="381" y="456" width="11" height="9"/>
+              <circle class="fleck" cx="426" cy="449" r="6"/>
+              <rect class="fleck" x="403" y="436" width="9" height="7"/>
+            </svg>
             <button class="pin" style="left:13%;top:56.4%"   data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
           </div>
           <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
@@ -1288,7 +1340,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     entries.forEach(function(en){
       if(!en.isIntersecting)return;
       var el=en.target;
-      if(el.classList.contains('fig1-stage')){runWipe();runOdo()}
+      if(el.classList.contains('fig1-stage')){
+        runWipe();runOdo();
+        var trk=el.querySelector('.fig1-track');
+        if(trk)setTimeout(function(){trk.classList.add('tip')},1100);
+      }
       else if(el.classList.contains('ticket')){
         var siblings=[].slice.call(el.closest('.claims')?el.closest('.claims').querySelectorAll('.ticket'):[el]);
         el.style.animationDelay=(siblings.indexOf(el)%3*70)+'ms';
@@ -1444,12 +1500,18 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   var plxTgt=plxEls.map(function(){return 0});
   var plxCur=plxEls.map(function(){return 0});
   var plxRaf=null;
+  var flare=0,lastSy=0;
   function plxTick(){
     var live=false;
     for(var i=0;i<plxEls.length;i++){
       plxCur[i]+=(plxTgt[i]-plxCur[i])*.22;
       if(Math.abs(plxTgt[i]-plxCur[i])>.2)live=true;
       plxEls[i].style.setProperty('--ty',plxCur[i].toFixed(1)+'px');
+    }
+    /* the core cools back down after the reader stops scrolling */
+    if(flare>.02){
+      flare*=.93;live=true;
+      if(track)track.style.setProperty('--flare',flare.toFixed(2));
     }
     plxRaf=live?requestAnimationFrame(plxTick):null;
   }
@@ -1500,6 +1562,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       for(var k=0;k<plxEls.length;k++){
         plxTgt[k]=f*amp*parseFloat(plxEls[k].dataset.depth);
       }
+      /* scroll velocity stokes the core and the wire pulses */
+      flare=Math.max(Math.min(1,Math.abs(sy-lastSy)/110),flare);
+      track.style.setProperty('--flare',flare.toFixed(2));
+      lastSy=sy;
       plxKick();
       /* mobile: the drawing pans itself right as the page scrolls, until the reader takes over by touch.
          Starts on the landfill at the top of the page; completes before the figure has mostly left the viewport. */
