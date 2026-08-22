@@ -648,12 +648,19 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 .proof-lead b{color:var(--navy);font-weight:600}
 
 /* fig 3 site plan */
-.siting-cols{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(1.5rem,3vw,2.8rem);align-items:start}
-/* siting camera scrub: frames lift the view from ground level to overhead, then the drafted plan fades in */
+.siting-cols{display:grid;grid-template-columns:1fr 2fr;gap:clamp(1.5rem,3vw,2.8rem);align-items:start}
+/* siting camera scrub: frames lift the view from ground level to overhead; annotations fade in at the top */
 .siteview{position:relative}
 .siteview .sv-frame{display:none;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
 html.js .siteview.scrub .sv-frame{display:block}
-html.js .siteview.scrub svg{position:absolute;left:0;top:50%;transform:translateY(-50%);width:100%;height:auto;background:var(--paper);opacity:0}
+html.js .siteview.scrub .sp-plan{position:absolute;left:0;top:50%;transform:translateY(-50%);width:100%;height:auto;background:var(--paper);opacity:0;pointer-events:none}
+.sv-notes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .45s ease-out}
+.siteview.noted .sv-notes{opacity:1}
+.sv-notes .ring{fill:none;stroke:var(--navy);stroke-width:2.2;stroke-dasharray:100;stroke-dashoffset:100}
+.siteview.noted .sv-notes .ring{animation:markdraw .9s ease-out forwards}
+.sv-notes .lead{stroke:var(--navy);stroke-width:1.2}
+.sv-notes .nt-big{font-family:"Oswald",sans-serif;font-weight:600;font-size:17px;fill:var(--navy);letter-spacing:.6px;text-transform:uppercase}
+.sv-notes .nt-sub{font-family:"Archivo",sans-serif;font-weight:600;font-size:8.5px;fill:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
 .siteplan{border:1px solid var(--rule-strong);padding:1rem;margin-top:0}
 .siteplan .sp-pulse{fill:var(--amber);opacity:.65}
 .siteplan .sp-core{fill:var(--amber)}
@@ -1040,7 +1047,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <figure class="siteplan figarea" aria-label="Illustrative site plan of an energy center inside a landfill parcel">
       <div class="siteview">
       <img class="sv-frame" alt="" aria-hidden="true">
-      <svg viewBox="0 0 900 400" role="img">
+      <svg class="sv-notes" viewBox="0 0 400 300" aria-hidden="true">
+        <ellipse class="ring" pathLength="100" cx="258" cy="70" rx="48" ry="30"/>
+        <line class="lead" x1="285" y1="97" x2="298" y2="158"/>
+        <text class="nt-big" x="298" y="178" text-anchor="middle">2 to 3 acres</text>
+        <text class="nt-sub" x="298" y="193" text-anchor="middle">The entire site footprint</text>
+      </svg>
+      <svg class="sp-plan" viewBox="0 0 900 400" role="img">
         <defs>
           <pattern id="hatchp" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
             <line x1="0" y1="0" x2="0" y2="7" stroke="var(--rule-strong)" stroke-width="1"/>
@@ -1556,6 +1569,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     var p=Math.max(0,Math.min(1,(innerHeight*0.92-fr.top)/(fr.height+innerHeight*0.55)));
     var idx=Math.min(SVN-1,Math.floor(p/0.85*SVN));
     if(idx!==svIdx){svIdx=idx;svImg.src=svFrames[idx].src}
+    if(p>=0.78)siteview.classList.add('noted');
+    else if(p<0.73)siteview.classList.remove('noted');
   }
 
   /* -------- scroll driver: scrub, spine, heat, running header -------- */
