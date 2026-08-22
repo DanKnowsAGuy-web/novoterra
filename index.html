@@ -384,14 +384,6 @@ html.js .docbody.spine-done::after{opacity:1}
   html.js .flowrow.in .micon .draw:nth-child(2){animation-delay:.18s}
   html.js .flowrow.in .micon .draw:nth-child(3){animation-delay:.36s}
   html.js .flowrow.in .micon .draw:nth-child(4){animation-delay:.54s}
-  html.js .ficon .draw{stroke-dasharray:100;stroke-dashoffset:100}
-  html.js .force.in .ficon .draw{animation:markdraw .8s ease-out forwards}
-  html.js .force.in .ficon .draw:nth-child(2){animation-delay:.1s}
-  html.js .force.in .ficon .draw:nth-child(3){animation-delay:.2s}
-  html.js .force.in .ficon .draw:nth-child(4){animation-delay:.3s}
-  html.js .force.in .ficon .draw:nth-child(5){animation-delay:.4s}
-  html.js .force.in .ficon .draw:nth-child(6){animation-delay:.5s}
-  html.js .force.in .ficon .draw:nth-child(7){animation-delay:.6s}
   html.js .markline path{stroke-dasharray:100;stroke-dashoffset:100;animation:markdraw .7s cubic-bezier(.2,.8,.2,1) .5s forwards}
   html.js .markline polygon{opacity:0;animation:markarrow .25s ease-out 1.15s forwards}
   html.js .mark-energy{opacity:0;animation:markfade .4s ease-out 1.3s forwards}
@@ -501,16 +493,28 @@ html.js .docbody.spine-done::after{opacity:1}
   font-weight:600;font-size:1rem;letter-spacing:.1em;margin-bottom:1rem;
 }
 .forcegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,3rem);border-top:1.5px solid var(--navy);padding-top:1.6rem}
-.force{display:grid;grid-template-columns:minmax(64px,30%) 1fr;gap:.2rem 1.1rem;align-items:start}
-.ficon{width:100%;max-width:112px;height:auto;display:block;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter}
-.force .fno{display:block;font-family:"Oswald",sans-serif;color:var(--navy);font-weight:600;font-size:1.35rem;line-height:1;margin-bottom:.25rem}
-.force b{display:block;font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);font-weight:600;font-size:1.05rem;letter-spacing:.05em;margin-bottom:.4rem}
-.force p{font-size:.95rem;max-width:42ch}
-.converge{
-  margin-top:1.8rem;text-align:center;
-  font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
-  font-weight:600;font-size:clamp(1.05rem,1.8vw,1.4rem);letter-spacing:.06em;
+.force{display:block}
+.force .fimg{width:100%;height:auto;display:block;border:1px solid var(--rule-strong);padding:.4rem;background:var(--paper);margin-bottom:.9rem}
+html.js .force .fimg{opacity:0;transform:translateY(10px);transition:opacity .6s ease-out,transform .6s ease-out}
+html.js .force.in .fimg{opacity:1;transform:none}
+html.js .forcegrid .force:nth-child(2) .fimg{transition-delay:.15s}
+html.js .forcegrid .force:nth-child(3) .fimg{transition-delay:.3s}
+.force .fno{display:inline;font-family:"Oswald",sans-serif;color:var(--navy);font-weight:600;font-size:1.05rem;margin-right:.35rem}
+.force b{display:inline;font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);font-weight:600;font-size:1.05rem;letter-spacing:.05em}
+.force p{font-size:.95rem;max-width:42ch;margin-top:.45rem}
+.verdict{
+  font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
+  color:var(--navy);font-size:clamp(1.25rem,2.3vw,1.8rem);line-height:1.3;
+  letter-spacing:.02em;max-width:36ch;margin-bottom:1.1rem;
 }
+.abstract-body{max-width:72ch;font-size:1.02rem;line-height:1.65}
+.converge{
+  margin-top:2.2rem;text-align:center;
+  font-family:"Oswald",sans-serif;text-transform:uppercase;
+  font-weight:600;font-size:clamp(1.15rem,2.1vw,1.6rem);letter-spacing:.05em;
+}
+.converge mark{background:var(--amber);color:var(--ink);padding:.12em .5em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+html.blueprint .converge mark{color:#241f24}
 /* procedure */
 .procedure{margin:.3rem 0 1.6rem;max-width:34rem}
 .procedure ol{list-style:none;counter-reset:step;border-top:1.5px solid var(--navy)}
@@ -889,48 +893,27 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 <section class="sheet" id="sheet2" aria-labelledby="h-abstract">
   <div class="strip">
-    <h2 id="h-abstract">Abstract &amp; Background</h2>
+    <h2 id="h-abstract">Abstract</h2>
     <span class="tag">Disclosure</span>
   </div>
-  <div class="sheet-body twocol">
-    <div>
-      <h3>Abstract</h3>
-      <p class="label" style="margin-bottom:.8rem">Prepared for allocators deciding their energy, AI, and data center exposure before 2030.</p>
-      <p>NovoTerra Energy holds United States access to a proven high temperature conversion process that converts the waste nobody wants into baseload electricity, process steam, recoverable clean water, and a stable mineral product.</p>
-      <p>This prospectus discloses the mechanism, the claims, the reference design, and the basis of every figure. Correspondence is invited.</p>
-    </div>
-    <div>
-      <h3>Background</h3>
-      <p>The prevailing thesis in energy investment is a bet on batteries, with meaningful deployment placed on a horizon near 2030. The debate concerns chemistry and business models, not fuel.</p>
-      <p>Meanwhile a fuel source that renews every day sits at the perimeter of every major metropolitan area: already connected to high voltage infrastructure, already permitted as an industrial site, and already paid to receive its feedstock. This document concerns what can be built now.</p>
-    </div>
+  <div class="sheet-body">
+    <p class="label" style="margin-bottom:1rem">Prepared for allocators deciding their energy, AI, and data center exposure before 2030.</p>
+    <p class="verdict">The consensus answer to the power&nbsp;shortage is: wait until 2030.<br>This document is the other answer.</p>
+    <p class="abstract-body">The energy debate is a battery debate: chemistry and business models, with meaningful deployment on a horizon near 2030. Meanwhile the fuel that renews every night sits at the perimeter of every major metro: already connected, already permitted, already paid to receive its feedstock. NovoTerra Energy holds United States access to the proven process that converts it to baseload power. What follows is the mechanism, the claims, and the basis of every figure.</p>
   </div>
   <div class="sheet-body forces">
     <h3 class="forces-title">Why now: the three forces</h3>
     <div class="forcegrid">
       <div class="force">
-        <svg class="ficon" viewBox="0 0 48 48" aria-hidden="true">
-          <rect class="draw" pathLength="100" x="6" y="20" width="26" height="20"/>
-          <line class="draw" pathLength="100" x1="13" y1="20" x2="13" y2="40"/>
-          <line class="draw" pathLength="100" x1="19" y1="20" x2="19" y2="40"/>
-          <line class="draw" pathLength="100" x1="25" y1="20" x2="25" y2="40"/>
-          <path class="draw" pathLength="100" d="M43 5 L33 16"/>
-          <path class="draw" pathLength="100" d="M33 10 v6 h6"/>
-          <path class="draw" pathLength="100" d="M28 25 l-3.5 6 h4.5 l-3.5 6"/>
-        </svg>
+        <img class="fimg" src="assets/force-load.webp" alt="Drawn vignette: a data center under construction, one hall finished and a second in steel framing beneath a tower crane.">
         <div class="ftext">
           <span class="fno">1.</span>
           <b>The load is arriving</b>
-          <p>Data centers are being planned faster than generation can be built, and their buyers need baseload power that runs at night and in still air. The demand is not a forecast; it is in the interconnection queue today.</p>
+          <p>Data centers are being planned faster than generation can be built, and their buyers need power that runs at night and in still air. The demand is not a forecast; it is in the interconnection queue today. The data centers being planned now will buy their power from whoever is connected when they open.</p>
         </div>
       </div>
       <div class="force">
-        <svg class="ficon" viewBox="0 0 48 48" aria-hidden="true">
-          <path class="draw" pathLength="100" d="M4 38 h40"/>
-          <path class="draw" pathLength="100" d="M4 43 h40"/>
-          <circle class="draw" pathLength="100" cx="24" cy="18" r="12"/>
-          <line class="draw" pathLength="100" x1="15.5" y1="9.5" x2="32.5" y2="26.5"/>
-        </svg>
+        <img class="fimg" src="assets/force-exits.webp" alt="Drawn vignette: a farm field behind a closed metal gate chained shut, fence posts receding.">
         <div class="ftext">
           <span class="fno">2.</span>
           <b>The old exits are closing</b>
@@ -938,15 +921,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
       </div>
       <div class="force">
-        <svg class="ficon" viewBox="0 0 48 48" aria-hidden="true">
-          <path class="draw" pathLength="100" d="M16 42 L23 8 h2 L32 42"/>
-          <line class="draw" pathLength="100" x1="10" y1="16" x2="38" y2="16"/>
-          <line class="draw" pathLength="100" x1="12" y1="16" x2="12" y2="20"/>
-          <line class="draw" pathLength="100" x1="36" y1="16" x2="36" y2="20"/>
-          <line class="draw" pathLength="100" x1="19" y1="26" x2="29" y2="34"/>
-          <line class="draw" pathLength="100" x1="29" y1="26" x2="19" y2="34"/>
-          <path class="draw" pathLength="100" d="M4 46 h8 M18 46 h12 M36 46 h8"/>
-        </svg>
+        <img class="fimg" src="assets/force-moat.webp" alt="Drawn vignette: a tall transmission tower standing over an empty staked site, its lines sweeping toward the horizon.">
         <div class="ftext">
           <span class="fno">3.</span>
           <b>The grid queue is the moat</b>
@@ -954,7 +929,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
       </div>
     </div>
-    <p class="converge">All three forces converge on the same acre.</p>
+    <p class="converge"><mark>All three forces converge on the same acre.</mark></p>
   </div>
 </section>
 
@@ -977,8 +952,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <li id="claim-2">
         <img class="cimg" src="assets/insight-grid.webp" alt="Drawn vignette: a landfill mound with a high voltage transmission tower beside it, its line sweeping toward the city skyline.">
         <div>
-          <h3 class="chead"><em>2.</em>The land it sits on already touches the grid</h3>
-          <p>Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. New interconnection takes years; this land skips the queue.</p>
+          <h3 class="chead"><em>2.</em>Put the plant where the fuel and the load meet</h3>
+          <p>Landfills ring the perimeter of every major metro, exactly where data centers want to build. The NovoTerra design co-locates the conversion vessel with its feedstock on one side and the load on the other, on land that is already wired. The site is the strategy.</p>
           <span class="ticket">NovoTerra siting thesis</span>
         </div>
       </li>
