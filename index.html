@@ -451,9 +451,12 @@ html.js .docbody.spine-done::after{opacity:1}
 /* sheet 3 claims */
 .claims{list-style:none}
 @media (min-width:1001px){
-  .claims{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);grid-auto-flow:column;column-gap:clamp(2.5rem,5vw,5rem)}
-  .claims li:nth-child(5){border-top:1px solid var(--rule)}
+  .claims--insight{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(2.5rem,5vw,5rem)}
+  .claims--insight li{border-top:1px solid var(--rule)}
 }
+.claims--insight li{grid-template-columns:72px 1fr}
+.claims--insight .cicon{width:64px;height:64px}
+.claims--insight .chead{font-size:clamp(1.35rem,2.2vw,1.9rem)}
 .cicon{width:52px;height:52px;stroke:var(--navy);fill:none;stroke-width:2.2;stroke-linecap:square;stroke-linejoin:miter}
 .chead{
   font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
@@ -532,6 +535,31 @@ html.js .docbody.spine-done::after{opacity:1}
 .spec td:first-child{color:var(--muted);font-size:.85rem;letter-spacing:.03em;width:38%}
 .spec td:last-child{font-weight:600}
 .footnote{margin-top:1.1rem;font-size:.78rem;color:var(--muted);max-width:80ch}
+
+/* core annotation */
+.core-note{
+  position:absolute;right:4%;top:-7%;width:14.5rem;
+  background:var(--paper);border:1px solid var(--navy);
+  padding:.7rem .85rem .75rem;font-size:.78rem;line-height:1.5;
+  box-shadow:0 8px 22px rgba(41,38,87,.2);
+  scroll-margin-top:6rem;
+  transition:background .4s ease-out;
+}
+.core-note::before{
+  content:"";position:absolute;top:62%;right:100%;
+  width:2.6rem;height:1.5px;background:var(--navy);
+}
+.core-note .chead{display:block;font-size:.98rem;margin-bottom:.35rem}
+.core-note>span{display:block}
+.core-note .ticket{margin-top:.55rem}
+.core-note.flash{background:#fdeecd}
+@media (max-width:1000px){
+  .core-note{position:static;width:auto;margin-top:1rem;box-shadow:none}
+  .core-note::before{display:none}
+}
+.footnote--center{margin:.7rem auto 0;text-align:center}
+.proof-lead{max-width:66ch;margin-bottom:1.6rem;font-size:1.05rem;line-height:1.6}
+.proof-lead b{color:var(--navy);font-weight:600}
 
 /* fig 3 site plan */
 .siteplan{border:1px solid var(--rule-strong);padding:1rem;margin-top:clamp(1.5rem,3vw,2.5rem)}
@@ -721,7 +749,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="plx" data-depth=".6">
             <img src="assets/layers/l2-vessel.webp" alt="">
             <div class="hero-ember" aria-hidden="true"></div>
-            <button class="pin" style="left:42.5%;top:62%" data-target="claim-3" data-part="16 · The reactor">16</button>
+            <button class="pin" style="left:42.5%;top:62%" data-target="claim-core" data-part="16 · The reactor">16</button>
           </div>
           <div class="plx" data-depth="1">
             <img src="assets/layers/l1-feedstock.webp"
@@ -816,65 +844,25 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <section class="sheet" id="sheet3" aria-labelledby="h-claims">
   <div class="strip">
     <span class="no">Sheet 3 of 8</span>
-    <h2 id="h-claims">What Is Claimed</h2>
-    <span class="tag">Each claim carries its source</span>
+    <h2 id="h-claims">The Insight</h2>
+    <span class="tag">What nobody else holds</span>
   </div>
   <div class="sheet-body">
-    <ol class="claims">
+    <ol class="claims claims--insight">
       <li id="claim-1">
         <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M5 36 Q16 14 24 14 Q32 14 43 36 Z"/><path class="draw" pathLength="100" d="M31 8 a9 9 0 0 1 6 9 M17 8 l-4 3 4 3 M31 8 h-14"/></svg>
         <div>
-          <h3 class="chead"><em>1.</em>Waste is a 24/7 fuel source available today</h3>
-          <p>Feedlot and dairy manure, sewage sludge, slaughterhouse residuals, municipal solid waste, and landfill content renew daily and burn independent of weather.</p>
+          <h3 class="chead"><em>1.</em>Every metro buries its fuel at the edge of town</h3>
+          <p>Feedlot and dairy manure, sewage sludge, slaughterhouse residuals, municipal solid waste, and landfill content renew daily and burn independent of weather. The fuel never stops arriving.</p>
           <span class="ticket">NovoTerra fuel thesis</span>
         </div>
       </li>
       <li id="claim-2">
         <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M14 42 L21 10 h2 L30 42"/><line class="draw" pathLength="100" x1="9" y1="18" x2="35" y2="18"/><path class="draw" pathLength="100" d="M35 18 q6 4 10 12"/><path class="draw" pathLength="100" d="M4 42 h40"/></svg>
         <div>
-          <h3 class="chead"><em>2.</em>The geography already works</h3>
-          <p>Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. The grid is already there.</p>
+          <h3 class="chead"><em>2.</em>The land it sits on already touches the grid</h3>
+          <p>Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. New interconnection takes years; this land skips the queue.</p>
           <span class="ticket">NovoTerra siting thesis</span>
-        </div>
-      </li>
-      <li id="claim-3">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M20 7 a4 4 0 0 1 8 0 v20 a8 8 0 1 1-8 0 Z"/><circle class="draw" pathLength="100" cx="24" cy="33" r="3.5"/><path class="draw" pathLength="100" d="M31 12 h6 M31 18 h6 M31 24 h6"/></svg>
-        <div>
-          <h3 class="chead"><em>3.</em>The process converts that waste at 2700 F</h3>
-          <p>The high temperature, pressurized oxygen environment completely oxidizes the organics, converting waste into energy, process steam, and a stable mineral product.</p>
-          <span class="ticket">Technology owner specification</span>
-        </div>
-      </li>
-      <li id="claim-4">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M24 5 L40 14 v20 L24 43 L8 34 V14 Z"/><line class="draw" pathLength="100" x1="12" y1="10" x2="36" y2="38"/></svg>
-        <div>
-          <h3 class="chead"><em>4.</em>High temperature destroys PFAS</h3>
-          <p>Land application of manure, biosolids, and compost faces rising PFAS scrutiny and long term liability. At 2700 F the contaminants are destroyed at the source, leaving a stable, glass-like vitreous slag that is safe to handle.</p>
-          <span class="ticket">Technology owner specification</span>
-        </div>
-      </li>
-      <li id="claim-5">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M27 4 L15 25 h8 L19 44 L34 21 h-9 Z"/></svg>
-        <div>
-          <h3 class="chead"><em>5.</em>One center yields about 31.5 GWh per year</h3>
-          <p>A 15 MWth NovoTerra Energy Center delivers about 4 MWe net at 90 percent availability, alongside process steam and a concentrated biogenic CO2 stream.</p>
-          <span class="ticket">Preliminary estimate, reference design</span>
-        </div>
-      </li>
-      <li id="claim-6">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M24 5 C17 16 13 22 13 28 a11 11 0 0 0 22 0 C35 22 31 16 24 5 Z"/><path class="draw" pathLength="100" d="M20 29 h8 M24 25 v8"/></svg>
-        <div>
-          <h3 class="chead"><em>6.</em>The process is net positive on water</h3>
-          <p>About 5 to 7 million gallons per year are recovered in excess of process makeup requirements, roughly 15,000 to 20,000 gallons per day.</p>
-          <span class="ticket">Preliminary estimate, reference design</span>
-        </div>
-      </li>
-      <li id="claim-7">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><circle class="draw" pathLength="100" cx="24" cy="24" r="18"/><path class="draw" pathLength="100" d="M15 24 l6 6 L33 17"/><path class="draw" pathLength="100" d="M24 2 v4 M24 42 v4 M2 24 h4 M42 24 h4"/></svg>
-        <div>
-          <h3 class="chead"><em>7.</em>TRL 8, not a horizon bet</h3>
-          <p>The process has operated since 2012 near Singapore at the ITEA 15 MW facility on Jurong Island, and since 2021 in Italy.</p>
-          <span class="ticket">Technology evidence, reference plants</span>
         </div>
       </li>
     </ol>
@@ -886,7 +874,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="strip">
     <span class="no">Sheet 4 of 8</span>
     <h2 id="h-machine">The Machine</h2>
-    <span class="tag">One vessel, five products</span>
+    <span class="tag">Inputs, the core, outputs</span>
   </div>
   <div class="sheet-body">
     <div class="machine">
@@ -903,6 +891,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
              alt="Patent style cutaway drawing of the cylindrical reactor vessel on saddle stands, inlet piping entering left and outlet piping leaving right, with the circular combustion core at center.">
         <div class="core-glow" aria-hidden="true"></div>
         <div class="core-glow-inner" aria-hidden="true"></div>
+        <div class="core-note" id="claim-core">
+          <b class="chead">2700 F. PFAS dies here.</b>
+          <span>At operating temperature the pressurized oxygen environment completely oxidizes the organics and destroys contaminants including PFAS, leaving a stable, glass-like vitreous slag that is safe to handle.</span>
+          <span class="ticket">Technology owner specification</span>
+        </div>
       </div>
       <div class="flows">
         <h3>Annual outputs</h3>
@@ -915,7 +908,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </dl>
       </div>
     </div>
-    <p class="machine-caption"><b>FIG. 2:</b> Cross section of the conversion vessel at operating temperature, 2700 F. The core runs continuously; the fuel arrives daily.</p>
+    <p class="machine-caption"><b>FIG. 2:</b> Cross section of the conversion vessel at operating temperature. The core runs continuously; the fuel arrives daily.</p>
+    <p class="footnote footnote--center">All values are preliminary estimates based on available data and may vary with operational conditions and site specific factors.</p>
   </div>
 </section>
 
@@ -923,28 +917,20 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <section class="sheet" id="sheet5" aria-labelledby="h-design">
   <div class="strip">
     <span class="no">Sheet 5 of 8</span>
-    <h2 id="h-design">Reference Design</h2>
-    <span class="tag">15 MWth Energy Center</span>
+    <h2 id="h-design">The Siting</h2>
+    <span class="tag">2 to 3 acres, already connected</span>
   </div>
   <div class="sheet-body">
     <table class="spec">
       <caption>The reference configuration co-locates one 15 MWth NovoTerra Energy Center with a large cattle feedlot and steam flaking feed mill. The same vessel accepts municipal, agricultural, and biosolid feedstocks; siting against a landfill substitutes the fuel column, not the machine.</caption>
       <tbody>
         <tr><th colspan="2">Plant</th></tr>
-        <tr><td>Thermal rating</td><td>15 MWth</td></tr>
-        <tr><td>Operating temperature</td><td>2700 F (1482 C)</td></tr>
+        <tr><td>Thermal rating</td><td>15 MWth (about 4 MWe net at 90 percent availability)</td></tr>
         <tr><td>Site footprint</td><td>2 to 3 acres, within 100 to 300 ft of the steam host</td></tr>
-        <tr><td>Technology readiness</td><td>TRL 8, reference plants since 2012</td></tr>
-        <tr><th colspan="2">Annual balance</th></tr>
-        <tr><td>Feedstock in</td><td>45,600 tons manure at 20 percent moisture</td></tr>
-        <tr><td>Oxygen in</td><td>25,550 tons, produced on site</td></tr>
-        <tr><td>Electricity out</td><td>31.5 GWh net (about 4 MWe at 90 percent availability)</td></tr>
-        <tr><td>Steam out</td><td>131,000 to 175,000 tons to the co-located host</td></tr>
-        <tr><td>Water balance</td><td>Net positive, 5 to 7 million gallons recovered</td></tr>
-        <tr><td>Mineral product</td><td>1,800 to 3,650 tons vitreous slag, stable and safe to handle</td></tr>
+        <tr><td>Grid connection</td><td>Existing high voltage interconnection at the parcel</td></tr>
       </tbody>
     </table>
-    <p class="footnote">All values are preliminary estimates based on available data and may vary with operational conditions and site specific factors. Unit pricing is pending from the technology owner and is deliberately absent from this document.</p>
+    <p class="footnote">Unit pricing is pending from the technology owner and is deliberately absent from this document.</p>
 
     <figure class="siteplan figarea" aria-label="Illustrative site plan of an energy center inside a landfill parcel">
       <svg viewBox="0 0 900 400" role="img">
@@ -996,10 +982,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 <section class="sheet" id="sheet6" aria-labelledby="h-prior">
   <div class="strip">
     <span class="no">Sheet 6 of 8</span>
-    <h2 id="h-prior">Prior Installations</h2>
-    <span class="tag">Technology evidence</span>
+    <h2 id="h-prior">Already Running</h2>
+    <span class="tag">TRL 8 · since 2012</span>
   </div>
   <div class="sheet-body">
+    <p class="proof-lead"><b>TRL 8, not a horizon bet.</b> The process has operated since 2012 near Singapore at the ITEA 15 MW facility on Jurong Island, and since 2021 in Italy. Everything else on this page is engineering; this sheet is the receipt.</p>
     <div class="plates">
       <div class="plate">
         <figure>
