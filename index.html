@@ -648,7 +648,13 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 .proof-lead b{color:var(--navy);font-weight:600}
 
 /* fig 3 site plan */
-.siteplan{border:1px solid var(--rule-strong);padding:1rem;margin-top:clamp(1.5rem,3vw,2.5rem)}
+.siting-cols{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(1.5rem,3vw,2.8rem);align-items:start}
+.siteplan{border:1px solid var(--rule-strong);padding:1rem;margin-top:0}
+.siteplan .sp-pulse{fill:var(--amber);opacity:.65}
+.siteplan .sp-core{fill:var(--amber)}
+html.blueprint .siteplan .sp-pulse,html.blueprint .siteplan .sp-core{opacity:.9}
+@media (prefers-reduced-motion:reduce){.siteplan .sp-flows{display:none}}
+@media (max-width:1000px){.siting-cols{grid-template-columns:1fr}.siteplan{margin-top:1.4rem}}
 .siteplan svg{width:100%;height:auto;display:block}
 .siteplan text{font-family:"Archivo",sans-serif;font-weight:600;letter-spacing:.14em;fill:var(--muted);text-transform:uppercase}
 .siteplan .lbl-navy{fill:var(--navy)}
@@ -1011,7 +1017,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <h2 id="h-design">The Siting</h2>
     <span class="tag">2 to 3 acres, already connected</span>
   </div>
-  <div class="sheet-body">
+  <div class="sheet-body siting-cols">
+    <div>
     <table class="spec">
       <caption>The reference configuration co-locates one 15 MWth NovoTerra Energy Center with a large cattle feedlot and steam flaking feed mill. The same vessel accepts municipal, agricultural, and biosolid feedstocks; siting against a landfill substitutes the fuel column, not the machine.</caption>
       <tbody>
@@ -1022,7 +1029,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </tbody>
     </table>
     <p class="footnote">Unit pricing is pending from the technology owner and is deliberately absent from this document.</p>
+    </div>
 
+    <div>
     <figure class="siteplan figarea" aria-label="Illustrative site plan of an energy center inside a landfill parcel">
       <svg viewBox="0 0 900 400" role="img">
         <defs>
@@ -1063,9 +1072,24 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <path d="M846 40 l-4 8 h8 z" fill="var(--navy)"/>
           <text class="lbl-navy" x="842" y="86" font-size="11">N</text>
         </g>
+        <g class="sp-flows" aria-hidden="true">
+          <path id="sp-fuel-a" d="M300 172 C 380 224, 470 262, 578 280" fill="none" stroke="none"/>
+          <path id="sp-fuel-b" d="M560 150 C 592 196, 618 236, 636 260" fill="none" stroke="none"/>
+          <path id="sp-power" d="M742 289 L 786 282 L 900 267" fill="none" stroke="none"/>
+          <circle class="sp-pulse" r="4"><animateMotion dur="5.5s" repeatCount="indefinite"><mpath href="#sp-fuel-a"/></animateMotion></circle>
+          <circle class="sp-pulse" r="4"><animateMotion dur="5.5s" begin="-2.7s" repeatCount="indefinite"><mpath href="#sp-fuel-a"/></animateMotion></circle>
+          <circle class="sp-pulse" r="4"><animateMotion dur="4.5s" begin="-1.3s" repeatCount="indefinite"><mpath href="#sp-fuel-b"/></animateMotion></circle>
+          <circle class="sp-pulse" r="4"><animateMotion dur="3.6s" repeatCount="indefinite"><mpath href="#sp-power"/></animateMotion></circle>
+          <circle class="sp-pulse" r="4"><animateMotion dur="3.6s" begin="-1.8s" repeatCount="indefinite"><mpath href="#sp-power"/></animateMotion></circle>
+          <circle class="sp-core" cx="650" cy="289" r="6">
+            <animate attributeName="r" values="5;7.5;5" dur="4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".55;.95;.55" dur="4s" repeatCount="indefinite"/>
+          </circle>
+        </g>
       </svg>
     </figure>
     <p class="siteplan-caption"><b>FIG. 3:</b> Reference siting plan, illustrative. The center occupies 2 to 3 acres inside the landfill parcel, beside the existing interconnection.</p>
+    </div>
   </div>
 </section>
 
@@ -1076,27 +1100,27 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <span class="tag">TRL 8 · since 2012</span>
   </div>
   <div class="sheet-body">
-    <p class="proof-lead"><b>TRL 8, not a horizon bet.</b> The process has operated since 2012 near Singapore at the ITEA 15 MW facility on Jurong Island, and since 2021 in Italy. Everything else on this page is engineering; this sheet is the receipt.</p>
+    <p class="proof-lead"><b>TRL 8, not a horizon bet.</b> The process has operated since 2012 at a 15 MW facility in Southeast Asia, and since 2021 at a second plant in Southern Europe. Everything else on this page is engineering; this sheet is the receipt.</p>
     <div class="plates">
       <div class="plate">
         <figure>
-          <img src="assets/plate-singapore.webp" alt="Line drawing depiction of the ITEA pilot plant on Jurong Island, Singapore: process columns, tanks, and pipe racks at a coastal industrial site.">
+          <img src="assets/plate-asia.webp" alt="Line drawing depiction of the 15 MW reference plant at a coastal industrial site in Southeast Asia: process columns, tanks, and pipe racks.">
           <div class="plate-stats">
-            <div><b>15 MW</b><span>ITEA facility, Jurong Island, Singapore</span></div>
+            <div><b>15 MW</b><span>reference facility, Southeast Asia</span></div>
             <div><b>Since 2012</b><span>in operation</span></div>
           </div>
-          <figcaption><b>Plate I.</b> ITEA 15 MW facility, Jurong Island, Singapore.</figcaption>
+          <figcaption><b>Plate I.</b> 15 MW reference facility, Southeast Asia.</figcaption>
         </figure>
         <span class="ticket">Technology evidence, reference plant</span>
       </div>
       <div class="plate">
         <figure>
-          <img src="assets/plate-italy.webp" alt="Line drawing depiction of the reference plant in Italy: process hall with external pipework, columns, and a storage tank.">
+          <img src="assets/plate-europe.webp" alt="Line drawing depiction of the second reference plant in Southern Europe: process hall with external pipework, columns, and a storage tank.">
           <div class="plate-stats">
-            <div><b>Italy</b><span>second reference plant</span></div>
+            <div><b>Southern Europe</b><span>second reference plant</span></div>
             <div><b>Since 2021</b><span>in operation</span></div>
           </div>
-          <figcaption><b>Plate II.</b> Reference plant, Italy.</figcaption>
+          <figcaption><b>Plate II.</b> Reference plant, Southern Europe.</figcaption>
         </figure>
         <span class="ticket">Technology evidence, reference plant</span>
       </div>
@@ -1193,7 +1217,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </div>
     <div class="smallprint">
       <p>Combined figures are stated against the reference design, one 15 MWth NovoTerra Energy Center, based on real operating field data; they may vary with operational conditions and site specific factors.</p>
-      <p>The reference plants in Singapore and Italy are owned and operated by the technology's originators; their results are presented as evidence of the process, not as NovoTerra's delivered work.</p>
+      <p>The reference plants in Southeast Asia and Southern Europe are owned and operated by the technology's originators; their results are presented as evidence of the process, not as NovoTerra's delivered work.</p>
       <p>Figures and plates are drawn illustrations.</p>
     </div>
   </footer>
@@ -1469,8 +1493,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   var orbits=[];
   if(plateImgs.length>=2){
     orbits=[
-      {img:plateImgs[0],base:'assets/orbit/sg-',n:24,frames:[],ready:false,idx:-1},
-      {img:plateImgs[1],base:'assets/orbit/it-',n:24,frames:[],ready:false,idx:-1}
+      {img:plateImgs[0],base:'assets/orbit/p1-',n:24,frames:[],ready:false,idx:-1},
+      {img:plateImgs[1],base:'assets/orbit/p2-',n:24,frames:[],ready:false,idx:-1}
     ];
   }
   var sheet6=document.getElementById('sheet6');
