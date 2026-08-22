@@ -742,7 +742,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="fig1-scroll">
       <div class="fig1-stage figarea">
         <div class="fig1-track">
-          <div class="plx" data-depth=".35">
+          <div class="plx" data-depth="-.45">
             <img src="assets/layers/l4-grid.webp" alt="">
             <svg class="powerflow" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
               <path id="wirepath" d="M496 65 C 520 95, 535 105, 554 110 C 580 122, 598 128, 615 135 C 640 148, 660 160, 677 169 C 705 182, 735 189, 758 194 C 785 202, 800 208, 815 214 C 835 220, 875 230, 919 239 C 947 243, 975 247, 1000 250" fill="none" stroke="none"/>
@@ -754,16 +754,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
             </svg>
             <button class="pin" style="left:61%;top:50%" data-target="claim-2" data-part="12 · Interconnection">12</button>
           </div>
-          <div class="plx" data-depth=".2">
+          <div class="plx" data-depth="-.28">
             <img src="assets/layers/l3-halls.webp" alt="">
             <button class="pin" style="left:77%;top:73%" data-target="claim-2" data-part="14 · Data center load">14</button>
           </div>
-          <div class="plx" data-depth="-.35">
+          <div class="plx" data-depth=".3">
             <img src="assets/layers/l2-vessel.webp" alt="">
             <div class="hero-ember" aria-hidden="true"></div>
             <button class="pin" style="left:49.5%;top:72%" data-target="claim-core" data-part="16 · The reactor">16</button>
           </div>
-          <div class="plx" data-depth="-1">
+          <div class="plx" data-depth="1">
             <img src="assets/layers/l1-feedstock.webp"
                  alt="Layered pen and ink drawing: an agricultural feedstock yard with a dump truck and dozer feeds a large conversion vessel by conveyor; data center halls, transmission towers, and a city skyline recede behind it.">
             <button class="pin" style="left:13%;top:60%"   data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
@@ -1469,15 +1469,16 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       var heat=Math.max(0,1-d/(innerHeight*0.75));
       reactor.style.setProperty('--heat',heat.toFixed(3));
     }
-    /* hero parallax planes: scroll only. Signed depths move the foreground and background in
-       opposite directions so the planes visibly shear past each other; a short glide makes the
-       motion legible on discrete mouse-wheel steps. Amplitude scales with the figure's height. */
+    /* hero parallax planes: scroll only. At page top the drawing sits exactly as composed;
+       from the first scrolled pixel the foreground lags (drops with the reader) while the
+       background climbs away faster. Positive depth lags, negative leads. Full shear is
+       reached by the time the figure is half scrolled out; a short glide keeps wheel steps legible. */
     if(!reduce&&plxEls.length&&track){
       var tr=track.getBoundingClientRect();
-      var pp=Math.max(0,Math.min(1,(innerHeight-tr.top)/(innerHeight+tr.height)));
-      var amp=Math.max(200,tr.height*0.5);
+      var f=Math.max(0,Math.min(1,sy/Math.max(120,tr.top+sy+tr.height*0.5)));
+      var amp=Math.max(140,tr.height*0.35);
       for(var k=0;k<plxEls.length;k++){
-        plxTgt[k]=(pp-0.5)*amp*parseFloat(plxEls[k].dataset.depth);
+        plxTgt[k]=f*amp*parseFloat(plxEls[k].dataset.depth);
       }
       plxKick();
       /* mobile: the drawing pans itself right as the page scrolls, until the reader takes over by touch.
