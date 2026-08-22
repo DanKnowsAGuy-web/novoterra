@@ -140,13 +140,13 @@ h1{
 @media (max-width:1000px){html.js .pan-hint{display:block}}
 .fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
 .fig1-stage{position:relative;min-width:900px;overflow:hidden}
-.fig1-track{position:relative;width:100%;aspect-ratio:2688/1060}
+.fig1-track{position:relative;width:100%;aspect-ratio:2688/1210}
 .plx{position:absolute;inset:0;--tx:0px;--ty:0px}
 .plx img{width:100%;height:auto;display:block;mix-blend-mode:multiply;transform:translate(var(--tx),var(--ty));will-change:transform}
 .plx .powerflow{transform:translate(var(--tx),var(--ty))}
 /* combustion material: the ember in the hero vessel and the energy pulses on the wires */
 .hero-ember{
-  position:absolute;left:47.4%;top:40%;width:9%;aspect-ratio:1;
+  position:absolute;left:46.2%;top:55.5%;width:8%;aspect-ratio:1;
   transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px));border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#f39b2d 0%,rgba(249,197,108,.9) 45%,rgba(249,197,108,0) 70%);
   mix-blend-mode:multiply;
@@ -454,8 +454,10 @@ html.js .docbody.spine-done::after{opacity:1}
   .claims--insight{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(2.5rem,5vw,5rem)}
   .claims--insight li{border-top:1px solid var(--rule)}
 }
-.claims--insight li{grid-template-columns:72px 1fr}
-.claims--insight .cicon{width:64px;height:64px}
+ol.claims--insight li{grid-template-columns:clamp(160px,18vw,240px) 1fr;gap:.2rem 1.4rem}
+.cimg{width:100%;height:auto;border:1px solid var(--rule-strong);padding:.4rem;background:var(--paper);grid-row:span 3}
+html.js .cimg{opacity:0;transform:translateY(10px);transition:opacity .6s ease-out,transform .6s ease-out}
+html.js .claims li.hl .cimg{opacity:1;transform:none}
 .claims--insight .chead{font-size:clamp(1.35rem,2.2vw,1.9rem)}
 .cicon{width:52px;height:52px;stroke:var(--navy);fill:none;stroke-width:2.2;stroke-linecap:square;stroke-linejoin:miter}
 .chead{
@@ -535,6 +537,19 @@ html.js .docbody.spine-done::after{opacity:1}
 .spec td:first-child{color:var(--muted);font-size:.85rem;letter-spacing:.03em;width:38%}
 .spec td:last-child{font-weight:600}
 .footnote{margin-top:1.1rem;font-size:.78rem;color:var(--muted);max-width:80ch}
+
+/* machine scroll phases: emphasis walks inputs, core, outputs (desktop only) */
+@media (min-width:1001px) and (prefers-reduced-motion:no-preference){
+  html.js .machine .flows,html.js .machine .reactor{transition:opacity .5s ease-out,transform .5s ease-out}
+  html.js .machine[data-phase="1"] .flows:last-of-type,
+  html.js .machine[data-phase="1"] .reactor{opacity:.4}
+  html.js .machine[data-phase="1"] .flows:first-of-type{transform:scale(1.04)}
+  html.js .machine[data-phase="2"] .flows{opacity:.4}
+  html.js .machine[data-phase="2"] .reactor{transform:scale(1.03)}
+  html.js .machine[data-phase="3"] .flows:first-of-type,
+  html.js .machine[data-phase="3"] .reactor{opacity:.4}
+  html.js .machine[data-phase="3"] .flows:last-of-type{transform:scale(1.04)}
+}
 
 /* core annotation */
 .core-note{
@@ -679,6 +694,7 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   .record li{grid-template-columns:1fr;gap:.15rem}
   .claims li{grid-template-columns:44px 1fr;gap:.2rem .8rem}
   .cicon{width:44px;height:44px}
+  ol.claims--insight li{grid-template-columns:120px 1fr}
   .keyfigure{align-items:flex-start}
   .twocol{grid-template-columns:1fr}
   .machine{grid-template-columns:1fr}
@@ -735,26 +751,26 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           <div class="plx" data-depth=".08">
             <img src="assets/layers/l4-grid.webp" alt="">
             <svg class="powerflow" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
-              <path id="wirepath" d="M520 78 C 550 96, 610 92, 655 82 C 700 94, 715 96, 750 88 C 800 98, 850 96, 900 90 C 940 94, 970 92, 1000 90" fill="none" stroke="none"/>
+              <path id="wirepath" d="M496 65 C 520 95, 535 105, 554 110 C 580 122, 598 128, 615 135 C 640 148, 660 160, 677 169 C 705 182, 735 189, 758 194 C 785 202, 800 208, 815 214 C 835 220, 875 230, 919 239 C 947 243, 975 247, 1000 250" fill="none" stroke="none"/>
               <circle class="pulse" r="3.4"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
               <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
               <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-6s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
             </svg>
-            <button class="pin" style="left:65.5%;top:26%" data-target="claim-2" data-part="12 · Interconnection">12</button>
+            <button class="pin" style="left:61%;top:50%" data-target="claim-2" data-part="12 · Interconnection">12</button>
           </div>
           <div class="plx" data-depth=".3">
             <img src="assets/layers/l3-halls.webp" alt="">
-            <button class="pin" style="left:63%;top:50%" data-target="claim-2" data-part="14 · Data center load">14</button>
+            <button class="pin" style="left:77%;top:73%" data-target="claim-2" data-part="14 · Data center load">14</button>
           </div>
           <div class="plx" data-depth=".6">
             <img src="assets/layers/l2-vessel.webp" alt="">
             <div class="hero-ember" aria-hidden="true"></div>
-            <button class="pin" style="left:42.5%;top:62%" data-target="claim-core" data-part="16 · The reactor">16</button>
+            <button class="pin" style="left:49.5%;top:72%" data-target="claim-core" data-part="16 · The reactor">16</button>
           </div>
           <div class="plx" data-depth="1">
             <img src="assets/layers/l1-feedstock.webp"
                  alt="Layered pen and ink drawing: an agricultural feedstock yard with a dump truck and dozer feeds a large conversion vessel by conveyor; data center halls, transmission towers, and a city skyline recede behind it.">
-            <button class="pin" style="left:15.5%;top:60%" data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
+            <button class="pin" style="left:19%;top:48%"   data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
           </div>
           <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
         </div>
@@ -850,7 +866,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   <div class="sheet-body">
     <ol class="claims claims--insight">
       <li id="claim-1">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M5 36 Q16 14 24 14 Q32 14 43 36 Z"/><path class="draw" pathLength="100" d="M31 8 a9 9 0 0 1 6 9 M17 8 l-4 3 4 3 M31 8 h-14"/></svg>
+        <img class="cimg" src="assets/insight-fuel.webp" alt="Drawn vignette: a garbage truck tips its load onto a terraced landfill at the edge of town, city skyline behind.">
         <div>
           <h3 class="chead"><em>1.</em>Every metro buries its fuel at the edge of town</h3>
           <p>Feedlot and dairy manure, sewage sludge, slaughterhouse residuals, municipal solid waste, and landfill content renew daily and burn independent of weather. The fuel never stops arriving.</p>
@@ -858,7 +874,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         </div>
       </li>
       <li id="claim-2">
-        <svg class="cicon" viewBox="0 0 48 48" aria-hidden="true"><path class="draw" pathLength="100" d="M14 42 L21 10 h2 L30 42"/><line class="draw" pathLength="100" x1="9" y1="18" x2="35" y2="18"/><path class="draw" pathLength="100" d="M35 18 q6 4 10 12"/><path class="draw" pathLength="100" d="M4 42 h40"/></svg>
+        <img class="cimg" src="assets/insight-grid.webp" alt="Drawn vignette: a landfill mound with a high voltage transmission tower beside it, its line sweeping toward the city skyline.">
         <div>
           <h3 class="chead"><em>2.</em>The land it sits on already touches the grid</h3>
           <p>Landfills ring the perimeter of every major metropolitan center, exactly where data centers want to build, and they already carry high voltage interconnection. New interconnection takes years; this land skips the queue.</p>
@@ -892,9 +908,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div class="core-glow" aria-hidden="true"></div>
         <div class="core-glow-inner" aria-hidden="true"></div>
         <div class="core-note" id="claim-core">
-          <b class="chead">2700 F. PFAS dies here.</b>
-          <span>At operating temperature the pressurized oxygen environment completely oxidizes the organics and destroys contaminants including PFAS, leaving a stable, glass-like vitreous slag that is safe to handle.</span>
-          <span class="ticket">Technology owner specification</span>
+          <b class="chead">At 2,700° Fahrenheit, PFAS dies.</b>
+          <span>The pressurized oxygen environment completely oxidizes the organics and destroys contaminants including PFAS, leaving a stable, glass-like vitreous slag that is safe to handle.</span>
         </div>
       </div>
       <div class="flows">
@@ -909,7 +924,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </div>
     <p class="machine-caption"><b>FIG. 2:</b> Cross section of the conversion vessel at operating temperature. The core runs continuously; the fuel arrives daily.</p>
-    <p class="footnote footnote--center">All values are preliminary estimates based on available data and may vary with operational conditions and site specific factors.</p>
+    <p class="footnote footnote--center">Based on real operating field data. May vary with operational conditions and site specific factors.</p>
   </div>
 </section>
 
@@ -1104,7 +1119,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <span class="label">Filed August 2026 · Sheet 8 of 8</span>
     </div>
     <div class="smallprint">
-      <p>Combined figures are stated against the reference design, one 15 MWth NovoTerra Energy Center, and are preliminary estimates that may vary with operational conditions and site specific factors.</p>
+      <p>Combined figures are stated against the reference design, one 15 MWth NovoTerra Energy Center, based on real operating field data; they may vary with operational conditions and site specific factors.</p>
       <p>The reference plants in Singapore and Italy are owned and operated by the technology's originators; their results are presented as evidence of the process, not as NovoTerra's delivered work.</p>
       <p>Figures and plates are drawn illustrations.</p>
     </div>
@@ -1253,7 +1268,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           var dx=e.clientX-cx,dy=e.clientY-cy;
           overCore=dx*dx+dy*dy<=cr*cr;
         }
-        if(overCore){coords.textContent='CORE · 2700 F'}
+        if(overCore){coords.textContent='CORE · 2,700° F'}
         else{
           var x=String(Math.max(0,Math.round(e.clientX-r.left))).padStart(4,'0');
           var y=String(Math.max(0,Math.round(e.clientY-r.top))).padStart(4,'0');
@@ -1445,8 +1460,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       var my=(e.clientY-r.top)/r.height-0.5;
       for(var i=0;i<plxEls.length;i++){
         var d=parseFloat(plxEls[i].dataset.depth);
-        plxMouse[i].x=mx*38*d;
-        plxMouse[i].y=my*20*d;
+        plxMouse[i].x=mx*22*d;
+        plxMouse[i].y=my*10*d;
         plxTgt[i].x=plxMouse[i].x;
         plxTgt[i].y=plxScroll[i]+plxMouse[i].y;
       }
@@ -1495,12 +1510,19 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       var heat=Math.max(0,1-d/(innerHeight*0.75));
       reactor.style.setProperty('--heat',heat.toFixed(3));
     }
+    /* machine story phases */
+    if(machine&&innerWidth>1000){
+      var mrr=machine.getBoundingClientRect();
+      var mp=(innerHeight*0.75-mrr.top)/(mrr.height+innerHeight*0.5);
+      var phase=mp<0||mp>1.15?'0':(mp<0.38?'1':(mp<0.7?'2':'3'));
+      if(machine.dataset.phase!==phase)machine.dataset.phase=phase;
+    }
     /* hero parallax planes: scroll component feeds the lerp targets */
     if(!reduce&&plxEls.length&&track){
       var tr=track.getBoundingClientRect();
       var pp=Math.max(0,Math.min(1,(innerHeight-tr.top)/(innerHeight+tr.height)));
       for(var k=0;k<plxEls.length;k++){
-        plxScroll[k]=(pp-0.5)*40*parseFloat(plxEls[k].dataset.depth);
+        plxScroll[k]=(pp-0.5)*72*parseFloat(plxEls[k].dataset.depth);
         plxTgt[k].y=plxScroll[k]+plxMouse[k].y;
         plxTgt[k].x=plxMouse[k].x;
       }
