@@ -140,19 +140,21 @@ h1{
 @media (max-width:1000px){html.js .pan-hint{display:block}}
 .fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
 .fig1-stage{position:relative;min-width:900px;overflow:hidden}
-.fig1-track{position:relative;width:100%}
-.fig1-track img{width:100%;height:auto;display:block}
+.fig1-track{position:relative;width:100%;aspect-ratio:2688/1060}
+.plx{position:absolute;inset:0;--ty:0px}
+.plx img{width:100%;height:auto;display:block;mix-blend-mode:multiply;transform:translateY(var(--ty));will-change:transform}
+.plx .powerflow{transform:translateY(var(--ty))}
 /* combustion material: the ember in the hero vessel and the energy pulses on the wires */
 .hero-ember{
   position:absolute;left:47.4%;top:40%;width:9%;aspect-ratio:1;
-  transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+  transform:translate(-50%,-50%) translateY(var(--ty,0px));border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#f39b2d 0%,rgba(249,197,108,.9) 45%,rgba(249,197,108,0) 70%);
   mix-blend-mode:multiply;
   animation:emberpulse 3.6s ease-in-out infinite;
 }
 @keyframes emberpulse{
-  0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.82)}
-  50%{opacity:1;transform:translate(-50%,-50%) scale(1.18)}
+  0%,100%{opacity:.55;transform:translate(-50%,-50%) translateY(var(--ty,0px)) scale(.82)}
+  50%{opacity:1;transform:translate(-50%,-50%) translateY(var(--ty,0px)) scale(1.18)}
 }
 html.blueprint .hero-ember{mix-blend-mode:screen}
 .powerflow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -299,6 +301,11 @@ html.js .docbody.spine-done::after{opacity:1}
   html.js .siteplan.in .sp-draw{animation:markdraw 1.1s ease-out forwards}
   html.js .siteplan .sp-fade{opacity:0;transition:opacity .7s ease-out .5s}
   html.js .siteplan.in .sp-fade{opacity:1}
+  html.js .micon .draw{stroke-dasharray:100;stroke-dashoffset:100}
+  html.js .flowrow.in .micon .draw{animation:markdraw .7s ease-out forwards}
+  html.js .flowrow.in .micon .draw:nth-child(2){animation-delay:.12s}
+  html.js .flowrow.in .micon .draw:nth-child(3){animation-delay:.24s}
+  html.js .flowrow.in .micon .draw:nth-child(4){animation-delay:.36s}
   html.js .ficon .draw{stroke-dasharray:100;stroke-dashoffset:100}
   html.js .force.in .ficon .draw{animation:markdraw .8s ease-out forwards}
   html.js .force.in .ficon .draw:nth-child(2){animation-delay:.1s}
@@ -345,7 +352,7 @@ html.js .docbody.spine-done::after{opacity:1}
   @page{margin:12mm}
 }
 .pin{
-  position:absolute;transform:translate(-50%,-50%);
+  position:absolute;transform:translate(-50%,-50%) translateY(var(--ty,0px));
   appearance:none;border:1px solid var(--navy);background:var(--paper);
   color:var(--navy);font-family:"Archivo",sans-serif;font-style:italic;
   font-size:.78rem;font-weight:600;line-height:1;
@@ -479,7 +486,9 @@ html.js .docbody.spine-done::after{opacity:1}
   font-weight:600;font-size:.95rem;letter-spacing:.12em;margin-bottom:.7rem;
   padding-bottom:.45rem;border-bottom:1.5px solid var(--navy);
 }
-.flows dl div{padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.flows dl div{padding:.55rem 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:30px 1fr;gap:0 .7rem;align-items:center}
+.micon{width:26px;height:26px;stroke:var(--navy);fill:none;stroke-width:1.8;stroke-linecap:square;stroke-linejoin:miter;grid-row:span 2}
+.flows dl div dt,.flows dl div dd{grid-column:2}
 .flows dt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
 .flows dd{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;font-size:.98rem}
 .reactor{position:relative}
@@ -689,19 +698,30 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <div class="fig1-scroll">
       <div class="fig1-stage figarea">
         <div class="fig1-track">
-          <img src="assets/fig1-panorama.webp" width="2688" height="1010"
-               alt="Patent style sectional elevation drawing of a metropolitan perimeter: landfill mounds at each edge, rows of high voltage transmission towers, a reactor vessel and a data center building co-located beside the left landfill, city skyline in the distance.">
-          <button class="pin" style="left:15.5%;top:60%" data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
-          <button class="pin" style="left:42.5%;top:62%" data-target="claim-3" data-part="16 · The reactor">16</button>
-          <button class="pin" style="left:63%;top:50%"   data-target="claim-2" data-part="14 · Data center load">14</button>
-          <button class="pin" style="left:65.5%;top:26%" data-target="claim-2" data-part="12 · Interconnection">12</button>
-          <div class="hero-ember" aria-hidden="true"></div>
-          <svg class="powerflow" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
-            <path id="wirepath" d="M520 78 C 550 96, 610 92, 655 82 C 700 94, 715 96, 750 88 C 800 98, 850 96, 900 90 C 940 94, 970 92, 1000 90" fill="none" stroke="none"/>
-            <circle class="pulse" r="3.4"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
-            <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-6s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
-          </svg>
+          <div class="plx" data-depth=".08">
+            <img src="assets/layers/l4-grid.webp" alt="">
+            <svg class="powerflow" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
+              <path id="wirepath" d="M520 78 C 550 96, 610 92, 655 82 C 700 94, 715 96, 750 88 C 800 98, 850 96, 900 90 C 940 94, 970 92, 1000 90" fill="none" stroke="none"/>
+              <circle class="pulse" r="3.4"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
+              <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
+              <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-6s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
+            </svg>
+            <button class="pin" style="left:65.5%;top:26%" data-target="claim-2" data-part="12 · Interconnection">12</button>
+          </div>
+          <div class="plx" data-depth=".3">
+            <img src="assets/layers/l3-halls.webp" alt="">
+            <button class="pin" style="left:63%;top:50%" data-target="claim-2" data-part="14 · Data center load">14</button>
+          </div>
+          <div class="plx" data-depth=".6">
+            <img src="assets/layers/l2-vessel.webp" alt="">
+            <div class="hero-ember" aria-hidden="true"></div>
+            <button class="pin" style="left:42.5%;top:62%" data-target="claim-3" data-part="16 · The reactor">16</button>
+          </div>
+          <div class="plx" data-depth="1">
+            <img src="assets/layers/l1-feedstock.webp"
+                 alt="Layered pen and ink drawing: an agricultural feedstock yard with a dump truck and dozer feeds a large conversion vessel by conveyor; data center halls, transmission towers, and a city skyline recede behind it.">
+            <button class="pin" style="left:15.5%;top:60%" data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
+          </div>
           <div class="reveal-wipe" aria-hidden="true"><i class="plothead"></i></div>
         </div>
       </div>
@@ -835,8 +855,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="flows">
         <h3>Annual inputs</h3>
         <dl>
-          <div><dt>Feedlot manure, 35,000 head basis</dt><dd>45,600 tons</dd></div>
-          <div><dt>Oxygen, on site air separator</dt><dd>25,550 tons</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><path class="draw" pathLength="100" d="M3 25 Q11 9 16 9 Q21 9 29 25 Z"/><path class="draw" pathLength="100" d="M9 25 q3-6 5-8 M17 25 q2-8 4-10"/></svg><dt>Feedlot manure, 35,000 head basis</dt><dd>45,600 tons</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><circle class="draw" pathLength="100" cx="12" cy="19" r="7"/><circle class="draw" pathLength="100" cx="22" cy="11" r="4.5"/></svg><dt>Oxygen, on site air separator</dt><dd>25,550 tons</dd></div>
         </dl>
       </div>
       <svg class="flowlines" aria-hidden="true"></svg>
@@ -849,11 +869,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="flows">
         <h3>Annual outputs</h3>
         <dl>
-          <div><dt>Net electricity</dt><dd>31.5 GWh</dd></div>
-          <div><dt>Process steam</dt><dd>131,000 to 175,000 tons</dd></div>
-          <div><dt>Biogenic CO2, concentrated</dt><dd>47,000 to 58,000 tons</dd></div>
-          <div><dt>Vitreous slag</dt><dd>1,800 to 3,650 tons</dd></div>
-          <div><dt>Recovered water</dt><dd>5 to 7 million gallons</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><path class="draw" pathLength="100" d="M18 3 L10 17 h5 L13 29 L23 14 h-6 Z"/></svg><dt>Net electricity</dt><dd>31.5 GWh</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><path class="draw" pathLength="100" d="M6 27 h20"/><path class="draw" pathLength="100" d="M11 23 q2-3 0-6 q-2-3 0-6"/><path class="draw" pathLength="100" d="M16 23 q2-3 0-6 q-2-3 0-6"/><path class="draw" pathLength="100" d="M21 23 q2-3 0-6 q-2-3 0-6"/></svg><dt>Process steam</dt><dd>131,000 to 175,000 tons</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><path class="draw" pathLength="100" d="M9 24 a5.5 5.5 0 0 1 0-11 a7 7 0 0 1 13-1 a5 5 0 0 1 1 12 Z"/><circle class="draw" pathLength="100" cx="13" cy="19" r="1.6"/><circle class="draw" pathLength="100" cx="19" cy="17" r="1.6"/></svg><dt>Biogenic CO2, concentrated</dt><dd>47,000 to 58,000 tons</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><path class="draw" pathLength="100" d="M6 14 L12 6 h9 L27 14 L16 28 Z"/><path class="draw" pathLength="100" d="M6 14 h21 M12 6 L16 28 L21 6"/></svg><dt>Vitreous slag</dt><dd>1,800 to 3,650 tons</dd></div>
+          <div><svg class="micon" viewBox="0 0 32 32" aria-hidden="true"><path class="draw" pathLength="100" d="M16 4 C11 12 8 17 8 21 a8 8 0 0 0 16 0 C24 17 21 12 16 4 Z"/></svg><dt>Recovered water</dt><dd>5 to 7 million gallons</dd></div>
         </dl>
       </div>
     </div>
@@ -1374,6 +1394,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   var runhead=document.querySelector('.runhead');
   var rhSheet=document.querySelector('.rh-sheet');
   var docbody=document.querySelector('.docbody');
+  var plxEls=[].slice.call(document.querySelectorAll('.plx'));
   var spinefill=document.querySelector('.spinefill');
   var reactor=document.querySelector('.reactor');
   var sections=[].slice.call(document.querySelectorAll('.docbody section'));
@@ -1408,6 +1429,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       var d=Math.abs(rr.top+rr.height/2-innerHeight/2);
       var heat=Math.max(0,1-d/(innerHeight*0.75));
       reactor.style.setProperty('--heat',heat.toFixed(3));
+    }
+    /* hero parallax planes */
+    if(!reduce&&plxEls.length&&track){
+      var tr=track.getBoundingClientRect();
+      var pp=Math.max(0,Math.min(1,(innerHeight-tr.top)/(innerHeight+tr.height)));
+      for(var k=0;k<plxEls.length;k++){
+        plxEls[k].style.setProperty('--ty',((pp-0.5)*24*parseFloat(plxEls[k].dataset.depth)).toFixed(1)+'px');
+      }
     }
     /* plate orbits */
     driveOrbits();
