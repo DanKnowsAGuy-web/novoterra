@@ -32,12 +32,12 @@
   --pad:clamp(1rem,4vw,3.5rem);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--paper)}
+html{scroll-behavior:smooth;background:var(--paper);font-size:17px}
 body{
   background:transparent;
   color:var(--ink);
   font-family:"Archivo",system-ui,sans-serif;
-  font-size:16px;
+  font-size:1rem;
   line-height:1.55;
 }
 /* drafting grid under the whole document */
@@ -66,12 +66,12 @@ img{max-width:100%;height:auto;display:block}
 /* ---------- document lettering ---------- */
 .display{font-family:"Oswald","Arial Narrow",sans-serif;text-transform:uppercase;color:var(--navy)}
 .label{
-  font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;
   color:var(--muted);font-weight:500;
 }
 .ticket{
   display:inline-block;border:1px solid var(--rule-strong);
-  padding:.15rem .55rem .12rem;font-size:.66rem;letter-spacing:.1em;
+  padding:.15rem .55rem .12rem;font-size:.74rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--muted);font-weight:500;
   background:var(--paper);
 }
@@ -140,7 +140,7 @@ h1{
 .pan-hint{
   position:absolute;right:10px;bottom:12px;z-index:7;display:none;
   background:var(--paper);border:1px solid var(--rule-strong);color:var(--navy);
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
   padding:.3rem .6rem;pointer-events:none;transition:opacity .35s ease-out;
 }
 .pan-hint.off{opacity:0}
@@ -237,12 +237,12 @@ html:not(.js) .reveal-wipe,.reveal-wipe.done{display:none}
   position:absolute;z-index:6;width:270px;background:var(--paper);
   border:1px solid var(--navy);padding:.75rem .9rem .8rem;
   box-shadow:0 8px 22px rgba(41,38,87,.2);
-  font-size:.8rem;line-height:1.5;transform:translate(-50%,-100%);
+  font-size:.9rem;line-height:1.5;transform:translate(-50%,-100%);
 }
 .callout::after{content:"";position:absolute;left:50%;top:100%;width:1.5px;height:40px;background:var(--navy)}
 .callout b{display:block;color:var(--navy);font-weight:600;margin-bottom:.3rem;padding-right:1.2rem}
-.callout .cticket{display:inline-block;border:1px solid var(--rule-strong);padding:.1rem .45rem;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.4rem}
-.callout a{font-weight:600;font-size:.75rem}
+.callout .cticket{display:inline-block;border:1px solid var(--rule-strong);padding:.1rem .45rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.4rem}
+.callout a{font-weight:600;font-size:.83rem}
 .callout .cx{position:absolute;top:.15rem;right:.3rem;appearance:none;border:0;background:none;color:var(--muted);font-size:1rem;line-height:1;cursor:pointer;padding:.2rem}
 .callout .cx:hover{color:var(--navy)}
 
@@ -251,7 +251,7 @@ html:not(.js) .reveal-wipe,.reveal-wipe.done{display:none}
 .coords{
   position:fixed;z-index:40;pointer-events:none;display:none;
   background:var(--paper);border:1px solid var(--rule-strong);color:var(--navy);
-  font-size:.64rem;letter-spacing:.14em;font-weight:600;padding:.18rem .5rem;
+  font-size:.72rem;letter-spacing:.14em;font-weight:600;padding:.18rem .5rem;
   font-variant-numeric:tabular-nums;
 }
 .coords.on{display:block}
@@ -268,14 +268,14 @@ html.js .runhead.on{transform:none}
 .rh-mark{font-family:"Oswald",sans-serif;font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em}
 .rh-mark .novo{color:var(--green)}
 .rh-mark .terra{color:var(--navy)}
-.rh-sheet{flex:1;text-align:center;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.runhead a{font-size:.75rem;font-weight:600;white-space:nowrap}
+.rh-sheet{flex:1;text-align:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.runhead a{font-size:.83rem;font-weight:600;white-space:nowrap}
 
 /* cyanotype toggle */
 .mode-toggle{
   position:fixed;right:14px;bottom:14px;z-index:31;
   appearance:none;background:var(--paper);border:1px solid var(--navy);color:var(--navy);
-  font-family:"Archivo",sans-serif;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  font-family:"Archivo",sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
   font-weight:600;padding:.5rem .75rem;cursor:pointer;
   transition:background .15s ease-out,color .15s ease-out;
 }
@@ -406,7 +406,7 @@ html.js .docbody.spine-done::after{opacity:1}
   position:absolute;transform:translate(-50%,-50%) translate(var(--tx,0px),var(--ty,0px));
   appearance:none;border:1px solid var(--navy);background:var(--paper);
   color:var(--navy);font-family:"Archivo",sans-serif;font-style:italic;
-  font-size:.78rem;font-weight:600;line-height:1;
+  font-size:.88rem;font-weight:600;line-height:1;
   width:2rem;height:2rem;border-radius:50%;
   cursor:pointer;
   box-shadow:0 1px 4px rgba(41,38,87,.22);
@@ -417,7 +417,7 @@ html.js .docbody.spine-done::after{opacity:1}
   content:attr(data-part);
   position:absolute;left:50%;bottom:calc(100% + .5rem);transform:translateX(-50%);
   white-space:nowrap;background:var(--navy);color:var(--paper);
-  font-style:normal;font-weight:500;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  font-style:normal;font-weight:500;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;
   padding:.3rem .6rem;opacity:0;pointer-events:none;
   transition:opacity .15s ease-out;
 }
@@ -426,7 +426,7 @@ html.js .docbody.spine-done::after{opacity:1}
   border-top:1.5px solid var(--navy);
   margin:0 var(--pad);
   padding:.8rem 0 2.2rem;
-  font-size:.8rem;color:var(--ink);letter-spacing:.02em;
+  font-size:.9rem;color:var(--ink);letter-spacing:.02em;
 }
 .figcaption b{font-weight:600;color:var(--navy)}
 
@@ -455,7 +455,7 @@ html.js .docbody.spine-done::after{opacity:1}
   font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;
   color:var(--navy);font-size:clamp(1.1rem,2vw,1.5rem);letter-spacing:.05em;
 }
-.strip .tag{justify-content:flex-end;font-size:.72rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:500;border-left:1px solid var(--rule-strong)}
+.strip .tag{justify-content:flex-end;font-size:.8rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:500;border-left:1px solid var(--rule-strong)}
 .sheet-body{padding:clamp(1.5rem,3.5vw,3rem) var(--pad) clamp(2rem,4vw,3.5rem)}
 
 /* sheet 2 */
@@ -544,7 +544,7 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 .flows dl div{padding:.65rem 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:46px 1fr;gap:0 .8rem;align-items:center}
 .micon{width:40px;height:40px;stroke:var(--navy);fill:none;stroke-width:2.5;stroke-linecap:square;stroke-linejoin:miter;grid-row:span 2}
 .flows dl div dt,.flows dl div dd{grid-column:2}
-.flows dt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.flows dt{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
 .flows dd{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;font-size:.98rem}
 .reactor{position:relative}
 .vessel-fig{position:relative}
@@ -568,7 +568,7 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
   .reactor .core-glow{animation:none;opacity:.75}
   html{scroll-behavior:auto}
 }
-.machine-caption{margin-top:1.4rem;text-align:center;font-size:.8rem;color:var(--ink)}
+.machine-caption{margin-top:1.4rem;text-align:center;font-size:.9rem;color:var(--ink)}
 .machine-caption b{font-weight:600;color:var(--navy)}
 
 /* sheet 5 table */
@@ -576,14 +576,14 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 .spec caption{text-align:left;padding-bottom:.9rem;font-size:.95rem;color:var(--ink);max-width:75ch}
 .spec th{
   font-family:"Oswald",sans-serif;text-transform:uppercase;letter-spacing:.1em;
-  font-weight:600;color:var(--navy);font-size:.85rem;text-align:left;
+  font-weight:600;color:var(--navy);font-size:.92rem;text-align:left;
   border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule-strong);
   padding:.65rem .75rem;
 }
 .spec td{border-bottom:1px solid var(--rule);padding:.6rem .75rem;vertical-align:top}
-.spec td:first-child{color:var(--muted);font-size:.85rem;letter-spacing:.03em;width:38%}
+.spec td:first-child{color:var(--muted);font-size:.92rem;letter-spacing:.03em;width:38%}
 .spec td:last-child{font-weight:600}
-.footnote{margin-top:1.1rem;font-size:.78rem;color:var(--muted);max-width:80ch}
+.footnote{margin-top:1.1rem;font-size:.88rem;color:var(--muted);max-width:80ch}
 
 /* machine entrance: inputs, then the vessel and core note, then outputs (desktop only) */
 @media (min-width:1001px) and (prefers-reduced-motion:no-preference){
@@ -596,7 +596,7 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 .core-note{
   position:relative;width:min(22rem,92%);margin:0 auto 1.4rem;
   background:var(--paper);border:1px solid var(--navy);
-  padding:.8rem 1rem .85rem;font-size:.78rem;line-height:1.5;
+  padding:.8rem 1rem .85rem;font-size:.88rem;line-height:1.5;
   box-shadow:0 8px 22px rgba(41,38,87,.14);
   scroll-margin-top:6rem;
   transition:background .4s ease-out;
@@ -621,20 +621,20 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 .siteplan svg{width:100%;height:auto;display:block}
 .siteplan text{font-family:"Archivo",sans-serif;font-weight:600;letter-spacing:.14em;fill:var(--muted);text-transform:uppercase}
 .siteplan .lbl-navy{fill:var(--navy)}
-.siteplan-caption{margin-top:.9rem;font-size:.8rem}
+.siteplan-caption{margin-top:.9rem;font-size:.9rem}
 .siteplan-caption b{font-weight:600;color:var(--navy)}
 
 /* sheet 6 plates */
 .plates{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3.5vw,3rem)}
 .plate figure{border:1px solid var(--rule-strong);padding:1rem}
 .plate img{width:100%;height:auto}
-.plate figcaption{padding-top:.8rem;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.plate figcaption{padding-top:.8rem;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
 .plate figcaption b{color:var(--navy)}
 .plate-stats{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule);margin-top:1rem}
 .plate-stats>div{padding:.6rem .8rem .7rem;border-right:1px solid var(--rule)}
 .plate-stats>div:last-child{border-right:0}
 .plate-stats b{display:block;font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy);font-size:1.1rem;text-transform:uppercase;letter-spacing:.03em}
-.plate-stats span{font-size:.72rem;color:var(--muted);line-height:1.45;display:block;margin-top:.2rem}
+.plate-stats span{font-size:.8rem;color:var(--muted);line-height:1.45;display:block;margin-top:.2rem}
 .plate .ticket{margin-top:.9rem}
 
 /* printed-only filing stamp */
@@ -660,20 +660,20 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   font-family:"Oswald",sans-serif;text-transform:uppercase;color:var(--navy);
   font-weight:600;font-size:1.35rem;letter-spacing:.05em;
 }
-.applicant .role{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:.2rem 0 1rem}
+.applicant .role{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:.2rem 0 1rem}
 .applicant .leadline{font-size:1.02rem;max-width:58ch;margin-bottom:1.3rem}
 .applicant .leadline b{color:var(--navy);font-weight:600}
 .cred-tiles{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--navy);border-bottom:1px solid var(--rule);margin-bottom:1.3rem}
 .cred-tiles>div{padding:.8rem .9rem .9rem;border-right:1px solid var(--rule)}
 .cred-tiles>div:last-child{border-right:0}
 .cred-tiles b{display:block;font-family:"Oswald",sans-serif;font-weight:600;color:var(--navy);font-size:1.15rem;text-transform:uppercase;letter-spacing:.03em}
-.cred-tiles span{font-size:.72rem;color:var(--muted);line-height:1.45;display:block;margin-top:.25rem}
+.cred-tiles span{font-size:.8rem;color:var(--muted);line-height:1.45;display:block;margin-top:.25rem}
 .record{list-style:none}
-.record li{display:grid;grid-template-columns:11.5rem 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--rule);font-size:.88rem}
-.record li b{font-weight:600;color:var(--navy);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.5}
+.record li{display:grid;grid-template-columns:11.5rem 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--rule);font-size:.95rem}
+.record li b{font-weight:600;color:var(--navy);font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.5}
 .affil{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.45rem}
 .applicant--second{border-left:1px solid var(--rule-strong);padding-left:clamp(1.5rem,3vw,2.75rem)}
-.applicant--second p{font-size:.92rem;margin:0 0 .9rem;max-width:48ch}
+.applicant--second p{font-size:.96rem;margin:0 0 .9rem;max-width:48ch}
 .applicant--second .affil{margin-top:.9rem}
 
 /* sheet 8 correspondence */
@@ -685,8 +685,8 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   max-width:19rem;
 }
 .seal .s1{font-family:"Oswald",sans-serif;font-weight:600;text-transform:uppercase;font-size:1.3rem;letter-spacing:.06em}
-.seal .s2{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border-top:1px solid var(--navy);margin-top:.5rem;padding-top:.5rem}
-.seal .s3{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;margin-top:.45rem}
+.seal .s2{font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border-top:1px solid var(--navy);margin-top:.5rem;padding-top:.5rem}
+.seal .s3{font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;margin-top:.45rem}
 .corr{max-width:75ch}
 .corr p{margin-bottom:1.1rem;max-width:62ch}
 .corr .field{
@@ -694,7 +694,7 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   border-bottom:1px solid var(--rule-strong);
   padding:.7rem 0;font-size:.95rem;max-width:36rem;
 }
-.corr .field span:first-child{color:var(--muted);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;align-self:center;font-weight:500}
+.corr .field span:first-child{color:var(--muted);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;align-self:center;font-weight:500}
 .corr .field span:last-child{font-weight:600}
 .corr-cta{
   display:inline-block;margin-top:1.8rem;background:var(--amber);
@@ -711,7 +711,7 @@ html.blueprint .portrait img{filter:grayscale(1) brightness(1.05);mix-blend-mode
   border-top:1.5px solid var(--navy);
   padding:1.2rem var(--pad) 2.5rem;
 }
-.endblock .smallprint{font-size:.75rem;color:var(--muted);max-width:90ch;line-height:1.6}
+.endblock .smallprint{font-size:.83rem;color:var(--muted);max-width:90ch;line-height:1.6}
 .endblock .smallprint p{margin-bottom:.5rem}
 .endrow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .endrow .label b{color:var(--navy)}
