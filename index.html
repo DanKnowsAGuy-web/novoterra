@@ -139,12 +139,12 @@ h1{
 .pan-hint.off{opacity:0}
 @media (max-width:1000px){html.js .pan-hint{display:block}}
 .fig1-scroll{overflow-x:auto;overflow-y:hidden;scrollbar-color:var(--navy) #efeff2;scrollbar-width:thin}
-.fig1-stage{position:relative;min-width:900px;height:clamp(280px,44vh,440px);overflow:hidden}
-.fig1-track{position:relative;width:100%;height:100%;will-change:transform}
-.fig1-track img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.fig1-stage{position:relative;min-width:900px;overflow:hidden}
+.fig1-track{position:relative;width:100%}
+.fig1-track img{width:100%;height:auto;display:block}
 /* combustion material: the ember in the hero vessel and the energy pulses on the wires */
 .hero-ember{
-  position:absolute;left:23%;top:77%;width:7.5%;aspect-ratio:1;
+  position:absolute;left:47.4%;top:40%;width:9%;aspect-ratio:1;
   transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,#f39b2d 0%,rgba(249,197,108,.9) 45%,rgba(249,197,108,0) 70%);
   mix-blend-mode:multiply;
@@ -691,13 +691,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <div class="fig1-track">
           <img src="assets/fig1-panorama.webp" width="2688" height="1010"
                alt="Patent style sectional elevation drawing of a metropolitan perimeter: landfill mounds at each edge, rows of high voltage transmission towers, a reactor vessel and a data center building co-located beside the left landfill, city skyline in the distance.">
-          <button class="pin" style="left:5.5%;top:74%"  data-target="claim-1" data-part="10 · Landfill, the fuel">10</button>
-          <button class="pin" style="left:21%;top:60%"   data-target="claim-3" data-part="16 · The reactor">16</button>
-          <button class="pin" style="left:40%;top:56%"   data-target="claim-2" data-part="14 · Data center load">14</button>
-          <button class="pin" style="left:77%;top:60%"   data-target="claim-2" data-part="12 · Interconnection">12</button>
+          <button class="pin" style="left:15.5%;top:60%" data-target="claim-1" data-part="10 · Feedstock, the fuel">10</button>
+          <button class="pin" style="left:42.5%;top:62%" data-target="claim-3" data-part="16 · The reactor">16</button>
+          <button class="pin" style="left:63%;top:50%"   data-target="claim-2" data-part="14 · Data center load">14</button>
+          <button class="pin" style="left:65.5%;top:26%" data-target="claim-2" data-part="12 · Interconnection">12</button>
           <div class="hero-ember" aria-hidden="true"></div>
           <svg class="powerflow" viewBox="0 0 1000 380" preserveAspectRatio="none" aria-hidden="true">
-            <path id="wirepath" d="M195 208 C 260 176, 330 176, 410 198 C 490 218, 555 170, 640 190 C 720 208, 795 166, 875 188 C 930 202, 962 188, 1000 194" fill="none" stroke="none"/>
+            <path id="wirepath" d="M520 78 C 550 96, 610 92, 655 82 C 700 94, 715 96, 750 88 C 800 98, 850 96, 900 90 C 940 94, 970 92, 1000 90" fill="none" stroke="none"/>
             <circle class="pulse" r="3.4"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
             <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-3s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
             <circle class="pulse" r="3.4"><animateMotion dur="9s" begin="-6s" repeatCount="indefinite"><mpath href="#wirepath"/></animateMotion></circle>
@@ -708,7 +708,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     </div>
     <span class="pan-hint" aria-hidden="true">Pan the drawing →</span>
   </div>
-  <p class="figcaption"><b>FIG. 1:</b> Data center and landfill co-located at the metropolitan perimeter, on existing high voltage lines. Numerals are live: select one to read its claim.</p>
+  <p class="figcaption"><b>FIG. 1:</b> Feedstock, conversion, and data center load on one site, on existing high voltage lines. Numerals are live: select one to read its claim.</p>
 </header>
 
 <div class="docbody">
