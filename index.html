@@ -1096,7 +1096,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </svg>
       </div>
     </figure>
-    <p class="siteplan-caption"><b>FIG. 3:</b> Reference siting, illustrative. Scrolling lifts the view from the fence line to overhead, where it resolves into the drafted plan: 2 to 3 acres inside the landfill parcel, beside the existing interconnection.</p>
+    <p class="siteplan-caption"><b>FIG. 3:</b> Reference siting, illustrative. Scrolling lifts the view from the fence line to overhead: the center occupies 2 to 3 acres beside its feedstock, on the existing interconnection.</p>
     </div>
   </div>
 </section>
@@ -1554,11 +1554,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     if(fr.top<innerHeight*2)loadSiteFrames();
     if(!svReady)return;
     var p=Math.max(0,Math.min(1,(innerHeight*0.92-fr.top)/(fr.height+innerHeight*0.55)));
-    var idx=Math.min(SVN-1,Math.floor(p/0.72*SVN));
+    var idx=Math.min(SVN-1,Math.floor(p/0.85*SVN));
     if(idx!==svIdx){svIdx=idx;svImg.src=svFrames[idx].src}
-    var po=Math.max(0,Math.min(1,(p-0.72)/0.16));
-    svPlan.style.opacity=po.toFixed(2);
-    svImg.style.opacity=(1-po).toFixed(2);
   }
 
   /* -------- scroll driver: scrub, spine, heat, running header -------- */
