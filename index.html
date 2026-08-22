@@ -1051,7 +1051,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
         <ellipse class="ring" pathLength="100" cx="258" cy="70" rx="48" ry="30"/>
         <line class="lead" x1="285" y1="97" x2="298" y2="158"/>
         <text class="nt-big" x="298" y="178" text-anchor="middle">2 to 3 acres</text>
-        <text class="nt-sub" x="298" y="193" text-anchor="middle">The entire site footprint</text>
+        <text class="nt-sub" x="298" y="193" text-anchor="middle">The entire<tspan x="298" dy="12">site footprint</tspan></text>
       </svg>
       <svg class="sp-plan" viewBox="0 0 900 400" role="img">
         <defs>
@@ -1567,10 +1567,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     if(fr.top<innerHeight*2)loadSiteFrames();
     if(!svReady)return;
     var p=Math.max(0,Math.min(1,(innerHeight*0.92-fr.top)/(fr.height+innerHeight*0.55)));
-    var idx=Math.min(SVN-1,Math.floor(p/0.85*SVN));
+    var idx=Math.min(SVN-1,Math.floor(p/0.5*SVN));
     if(idx!==svIdx){svIdx=idx;svImg.src=svFrames[idx].src}
-    if(p>=0.78)siteview.classList.add('noted');
-    else if(p<0.73)siteview.classList.remove('noted');
+    if(p>=0.47)siteview.classList.add('noted');
+    else if(p<0.42)siteview.classList.remove('noted');
   }
 
   /* -------- scroll driver: scrub, spine, heat, running header -------- */
