@@ -649,6 +649,11 @@ html.js .claims li.hl .cimg{opacity:1;transform:none}
 
 /* fig 3 site plan */
 .siting-cols{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(1.5rem,3vw,2.8rem);align-items:start}
+/* siting camera scrub: frames lift the view from ground level to overhead, then the drafted plan fades in */
+.siteview{position:relative}
+.siteview .sv-frame{display:none;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+html.js .siteview.scrub .sv-frame{display:block}
+html.js .siteview.scrub svg{position:absolute;left:0;top:50%;transform:translateY(-50%);width:100%;height:auto;background:var(--paper);opacity:0}
 .siteplan{border:1px solid var(--rule-strong);padding:1rem;margin-top:0}
 .siteplan .sp-pulse{fill:var(--amber);opacity:.65}
 .siteplan .sp-core{fill:var(--amber)}
@@ -1033,6 +1038,8 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
     <div>
     <figure class="siteplan figarea" aria-label="Illustrative site plan of an energy center inside a landfill parcel">
+      <div class="siteview">
+      <img class="sv-frame" alt="" aria-hidden="true">
       <svg viewBox="0 0 900 400" role="img">
         <defs>
           <pattern id="hatchp" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
@@ -1087,8 +1094,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
           </circle>
         </g>
       </svg>
+      </div>
     </figure>
-    <p class="siteplan-caption"><b>FIG. 3:</b> Reference siting plan, illustrative. The center occupies 2 to 3 acres inside the landfill parcel, beside the existing interconnection.</p>
+    <p class="siteplan-caption"><b>FIG. 3:</b> Reference siting, illustrative. Scrolling lifts the view from the fence line to overhead, where it resolves into the drafted plan: 2 to 3 acres inside the landfill parcel, beside the existing interconnection.</p>
     </div>
   </div>
 </section>
@@ -1525,6 +1533,34 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     });
   }
 
+  /* -------- siting camera scrub (sheet 5): fence line to overhead, resolving into the plan -------- */
+  var siteview=document.querySelector('.siteview');
+  var svImg=siteview?siteview.querySelector('.sv-frame'):null;
+  var svPlan=siteview?siteview.querySelector('svg'):null;
+  var svFrames=[],svReady=false,svLoadStarted=false,svIdx=-1,SVN=24;
+  function loadSiteFrames(){
+    if(svLoadStarted||reduce||!svImg)return;
+    svLoadStarted=true;
+    var done=0;
+    for(var i=0;i<SVN;i++)(function(i){
+      var im=new Image();
+      im.onload=function(){svFrames[i]=im;done++;if(done===SVN){svReady=true;siteview.classList.add('scrub')}};
+      im.src='assets/site/sv-'+('0'+i).slice(-2)+'.webp';
+    })(i);
+  }
+  function driveSiteview(){
+    if(!siteview)return;
+    var fr=siteview.getBoundingClientRect();
+    if(fr.top<innerHeight*2)loadSiteFrames();
+    if(!svReady)return;
+    var p=Math.max(0,Math.min(1,(innerHeight*0.92-fr.top)/(fr.height+innerHeight*0.55)));
+    var idx=Math.min(SVN-1,Math.floor(p/0.72*SVN));
+    if(idx!==svIdx){svIdx=idx;svImg.src=svFrames[idx].src}
+    var po=Math.max(0,Math.min(1,(p-0.72)/0.16));
+    svPlan.style.opacity=po.toFixed(2);
+    svImg.style.opacity=(1-po).toFixed(2);
+  }
+
   /* -------- scroll driver: scrub, spine, heat, running header -------- */
   var header=document.getElementById('sheet1');
   var runhead=document.querySelector('.runhead');
@@ -1613,6 +1649,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
     /* plate orbits */
     driveOrbits();
+    driveSiteview();
   }
   function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(drive)}}
   addEventListener('scroll',onScroll,{passive:true});
